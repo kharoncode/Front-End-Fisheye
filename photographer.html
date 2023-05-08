@@ -10,12 +10,16 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
 
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <article class="photograph-header--info"></article>
+        <button class="contact_button open">Contactez-moi</button>
+        <img class="picture" src="" alt="">
       </div>
     </main>
 
@@ -23,18 +27,29 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img class="close" src="assets/icons/close.svg" />
+          <h3></h3>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
+				<form class="form">
+					<div class="form-data">
+						<label for="first">Prénom</label>
+						<input required type="text" id="first" name="first"  >
+          </div>
+          <div class="form-data">
+						<label for="last">Nom</label>
+						<input required type="text" id="last" name="last"  >
+          </div>
+          <div class="form-data">
+						<label for="mail">Email</label>
+						<input required type="email" id="mail" name="mail"  >
+          </div>
+          <div class="form-data">
+						<label for="comment">Votre message</label>
+						<input required type="text" id="comment" name="comment"  >
+          </div>
+          <button class="contact_button submitButton">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

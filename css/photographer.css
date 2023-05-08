@@ -6,6 +6,31 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-header h2{
+    color: #D3573C;
+    font-size: 4em;
+}
+
+.photographer--location {
+    color: #901C1C;
+    font-size: 1.5em;
+}
+
+.photographer--tagline {
+    color: #525252;
+    font-size: 1.125em;
+}
+
+.photograph-header img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact_button {
@@ -22,30 +47,36 @@
 }
 
 .modal {
+    position: absolute;
+    top: 5%;
+    left: 25%;
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
+    max-width: 631px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
 }
 
 .modal header {
+    display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
+    height: auto;
 }
 
 .modal header img {
     cursor: pointer;
 }
 
-.modal header h2 {
-    font-size: 64px;
+.modal header h2, .modal header h3 {
+    font-size: 4em;
     font-weight: normal;
-    text-align: center;
+    width: 80%;
 }
 
 form {
@@ -57,7 +88,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 1.5em;
 }
 
 form div {

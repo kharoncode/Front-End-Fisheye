@@ -10,7 +10,6 @@ export function photographerFactory(data) {
         // Anchor
         const anchorElement = document.createElement('a');
         anchorElement.href = `photographer.html?id=${id}`;
-        anchorElement.textContent = "test"
         // Picture (portrait)
         const img = document.createElement( 'img' );
         img.src = picture;
@@ -18,8 +17,8 @@ export function photographerFactory(data) {
         // Name
         const photographerName = document.createElement( 'h2' );
         photographerName.textContent = name;
-        article.appendChild(img);
-        article.appendChild(photographerName);
+        anchorElement.appendChild(img);
+        anchorElement.appendChild(photographerName);
         article.appendChild(anchorElement);
 
         // Information
