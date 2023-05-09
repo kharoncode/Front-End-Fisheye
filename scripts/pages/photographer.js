@@ -52,5 +52,3 @@ img.alt = `Portrait de ${photographName}`;
 // Modal Name
 const modalName = document.querySelector('.modal header h3');
 modalName.textContent = `${photographName}`;
-
-console.log(modalName)

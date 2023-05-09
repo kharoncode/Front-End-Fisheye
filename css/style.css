@@ -28,7 +28,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
+    height: 100px;
 }
 
 h1 {
@@ -39,14 +39,14 @@ h1 {
 
 .logo {
     height: 50px;
-    margin-left: 100px;
+    margin: 0 100px;
 }
 
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin: 80px 65px;
 }
 
 .photographer_section article, .photographer_section a {

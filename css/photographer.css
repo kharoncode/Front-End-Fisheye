@@ -1,11 +1,16 @@
 #contact_modal {
     display: none;
+    position: absolute;
+    background-color: rgba(196, 196, 196, 0.4);
+    height: 100%;
+    width: 100%;
+    top: 0;
 }
 
 .photograph-header {
+    padding: 0 150px;
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,12 +76,14 @@
 
 .modal header img {
     cursor: pointer;
+    position: absolute;
+    top: 35px;
+    right: 35px;
 }
 
 .modal header h2, .modal header h3 {
     font-size: 4em;
     font-weight: normal;
-    width: 80%;
 }
 
 form {
@@ -104,4 +111,9 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+form textarea{
+    height: 170px;
+    width: 100%;
 }
