@@ -16,15 +16,40 @@ const photographers = await fetch('./data/photographers.json').then(photographer
 let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
 
-function getPhotographer (id, photographers){
+// Get Photographer Information with ID
+function getPhotographer (id, data){
     let photographer = {};
-    for(let i = 0; i < photographers.photographers.length; i++){
-        if(photographers.photographers[i].id === id){
-            photographer = photographers.photographers[i];
+    for(let i = 0; i < data.photographers.length; i++){
+        if(data.photographers[i].id === id){
+            photographer = data.photographers[i];
         }
     }
     return photographer;
 }
+
+// Get Photographer total Likes with ID
+function getPhotographerLike (id, data){
+    let like = 0;
+    for(let i = 0; i < data.media.length; i++){
+        if(data.media[i].photographerId === id){
+            like += data.media[i].likes;
+        }
+    }
+    return like;
+}
+
+// Get Photographer Media with ID
+function getPhotographerMedia (id, data){
+    let media = {};
+    for(let i = 0; i < data.media.length; i++){
+        if(data.media[i].photographerId === id){
+            media[i] = data.media[i];
+        }
+    }
+    return media;
+}
+
+console.log(getPhotographerMedia(id, photographers));
 
 const { name:photographName, portrait, city, country, tagline, price} = getPhotographer(id, photographers);
 
@@ -48,6 +73,16 @@ const picture = `assets/photographers/${portrait}`;
 const img = document.querySelector(".picture")
 img.src = picture;
 img.alt = `Portrait de ${photographName}`;
+
+// Footer
+const likeNPrice = document.querySelector('.photograph-footer');
+const photographerLike = document.createElement('p');
+let totalLike = getPhotographerLike(id, photographers);
+photographerLike.innerHTML = `${totalLike} <i class="fa-solid fa-heart"></i>`;
+const photographerPrice = document.createElement('p');
+photographerPrice.textContent = `${price}€ / jour`;
+likeNPrice.appendChild(photographerLike);
+likeNPrice.appendChild(photographerPrice);
 
 // Modal Name
 const modalName = document.querySelector('.modal header h3');

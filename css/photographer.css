@@ -38,6 +38,27 @@
     object-fit: cover;
 }
 
+.photograph-footer{
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+    padding: 21px 35px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    background-color: #DB8876;
+}
+
+.photograph-footer p{
+    font-size: 1.5em;
+}
+
+.photograph-footer i{
+    font-size: 1em;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
