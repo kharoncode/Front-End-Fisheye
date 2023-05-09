@@ -11,7 +11,7 @@ submit.addEventListener('submit', (event)=>{
 })
 
 // Photographer Page
-const photographers = await fetch('../data/photographers.json').then(photographers => photographers.json());
+const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
 
 let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
