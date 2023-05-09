@@ -1,10 +1,11 @@
 #contact_modal {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: rgba(196, 196, 196, 0.4);
     height: 100%;
     width: 100%;
     top: 0;
+    justify-content: center;
 }
 
 .photograph-header {
@@ -16,7 +17,7 @@
     align-items: center;
 }
 
-.photograph-header h2{
+.photograph-header h1{
     color: #D3573C;
     font-size: 4em;
 }
@@ -24,6 +25,7 @@
 .photographer--location {
     color: #901C1C;
     font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
 .photographer--tagline {
@@ -35,6 +37,34 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.photograph-main--media {
+    padding: 0 100px 100px 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 95px;
+}
+
+.photograph-main--media-Card{
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.photograph-main--media-Card p{
+    font-size: 1.5em;
+    color: #901C1C;
+}
+
+
+.photograph-main--media-Card img{
+    width: 350px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -75,7 +105,6 @@
 .modal {
     position: absolute;
     top: 5%;
-    left: 25%;
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
