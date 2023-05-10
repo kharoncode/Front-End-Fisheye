@@ -40,8 +40,37 @@
     object-fit: cover;
 }
 
-.photograph-main--media {
+.photograph-main {
+    position: relative;
+    width: 100%;
     padding: 0 100px 100px 100px;
+}
+
+.photographe-main--filter {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.photographe-main--filter p{
+    padding-right: 25px;
+    font-size: 1.125em;
+    font-weight: 700;
+}
+
+#btn-filter, #btn-filter option{
+    background-color: #901C1C;
+    color: #ffffff;
+    border: 1px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.125em;
+    font-weight: 700;
+}
+
+.photograph-main--media {
+    padding-top: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;

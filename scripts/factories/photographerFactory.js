@@ -1,3 +1,4 @@
+// Import JSON-data in index.html
 export function photographerCard(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
@@ -46,6 +47,7 @@ export function photographerCard(data) {
     return { name, picture, getUserCardDOM }
 }
 
+// Import JSON-data in photographer.html
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
 
@@ -80,8 +82,8 @@ export function photographerPage(data, like){
     likeNPrice.appendChild(photographerPrice);
 }
 
+// Import JSON-Data Media in photographer.html
 export function photographerMedia(data){
-   
     const {photographerId, title, image, likes, date, price} = data;
 
     const mediaSection = document.querySelector('.photograph-main--media');
@@ -101,4 +103,31 @@ export function photographerMedia(data){
     mediaCard.appendChild(mediaTitle);
     mediaCard.appendChild(mediaLikes);
     mediaSection.appendChild(mediaCard);
+}
+
+// Get Photographer Information with ID
+export function getPhotographer (id, data){
+    for(let i = 0; i < data.photographers.length; i++){
+        if(data.photographers[i].id === id){
+            return data.photographers[i];
+        }
+    }
+    return {};
+}
+
+// Get Photographer Media n Likes with ID
+export function getPhotographerMediaLike (id, data){
+    let media = {};
+    let likes = 0;
+    for(let i = 0; i < data.media.length; i++){
+        if(data.media[i].photographerId === id){
+            media[i] = data.media[i];
+            likes += data.media[i].likes;
+        }
+    }
+    return {media, likes};
+}
+
+// Sort Media
+export function sortPhotographerMedia (){
 }

@@ -1,5 +1,6 @@
 import {displayModal, closeModal} from "../utils/contactForm.js";
-import {photographerPage, photographerMedia} from "../factories/photographerFactory.js"
+import {photographerPage, photographerMedia, getPhotographer, getPhotographerMediaLike} from "../factories/photographerFactory.js"
+
 // Photographer Page
 const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
 
@@ -7,41 +8,9 @@ let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
 
 async function getPhotographerInfo(id, data){
-    // Get Photographer Information with ID
-    function getPhotographer (id, data){
-        for(let i = 0; i < data.photographers.length; i++){
-            if(data.photographers[i].id === id){
-                return data.photographers[i];
-            }
-        }
-        return {};
-    }
-
-    // Get Photographer total Likes with ID
-    function getPhotographerLike (id, data){
-        let like = 0;
-        for(let i = 0; i < data.media.length; i++){
-            if(data.media[i].photographerId === id){
-                like += data.media[i].likes;
-            }
-        }
-        return like;
-    }
-
-    // Get Photographer Media with ID
-    function getPhotographerMedia (id, data){
-        let media = {};
-        for(let i = 0; i < data.media.length; i++){
-            if(data.media[i].photographerId === id){
-                media[i] = data.media[i];
-            }
-        }
-        return media;
-    }
-
     const photographer = getPhotographer(id, data);
-    const likes = getPhotographerLike(id, data);
-    const media = getPhotographerMedia(id, data);
+    const likes = getPhotographerMediaLike(id, data).likes;
+    const media = getPhotographerMediaLike(id, data).media;
 
     return {photographer, likes, media}
 }

@@ -12,15 +12,15 @@
 
 a {
     text-decoration: none;
-  }
-  
-  a:link {
-    color: black;
-  }
-  
-  a:visited {
-    color: initial;
-  }
+}
+
+a:link {
+color: black;
+}
+
+a:visited {
+color: initial;
+}
 
 
 header {
@@ -31,7 +31,7 @@ header {
     height: 100px;
 }
 
-h1 {
+header h1 {
     color: #901C1C;
     font-size: 2.25em;
     margin-right: 100px;
