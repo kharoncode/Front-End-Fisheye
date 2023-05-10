@@ -1,7 +1,7 @@
 export function photographerCard(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/mini/${portrait}`;
 
     function getUserCardDOM() {
         // Photographer Card
@@ -37,8 +37,8 @@ export function photographerCard(data) {
         const photographerPrice = document.createElement('p');
         photographerPrice.className = 'photographer-info--price';
         photographerPrice.textContent = `${price}€/jour`
-        div.appendChild(photographerTagline);
         div.appendChild(photographerLocation);
+        div.appendChild(photographerTagline);
         div.appendChild(photographerPrice);
         
         return (article);
@@ -49,7 +49,7 @@ export function photographerCard(data) {
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
 
-    const info = document.querySelector('.photograph-header--info');
+    const info_elt = document.querySelector('.photograph-header--info');
     const photographerName = document.createElement('h1');
     photographerName.textContent = name;
     // Location
@@ -60,9 +60,9 @@ export function photographerPage(data, like){
     const photographerTagline = document.createElement('p');
     photographerTagline.className = 'photographer--tagline';
     photographerTagline.textContent = tagline;
-    info.appendChild(photographerLocation);
-    info.appendChild(photographerName);
-    info.appendChild(photographerTagline);
+    info_elt.appendChild(photographerName);
+    info_elt.appendChild(photographerLocation);
+    info_elt.appendChild(photographerTagline);
 
     const picture = `assets/photographers/${portrait}`;
     // Picture (portrait)
@@ -73,12 +73,11 @@ export function photographerPage(data, like){
     // Footer
     const likeNPrice = document.querySelector('.photograph-footer');
     const photographerLike = document.createElement('p');
-    let totalLike = like;
-    photographerLike.innerHTML = `${totalLike} <i class="fa-solid fa-heart"></i>`;
+    photographerLike.innerHTML = `${like} <i class="fa-solid fa-heart"></i>`;
     const photographerPrice = document.createElement('p');
     photographerPrice.textContent = `${price}€ / jour`;
-    likeNPrice.appendChild(photographerPrice);
     likeNPrice.appendChild(photographerLike);
+    likeNPrice.appendChild(photographerPrice);
 }
 
 export function photographerMedia(data){
