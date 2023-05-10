@@ -129,5 +129,7 @@ export function getPhotographerMediaLike (id, data){
 }
 
 // Sort Media
-export function sortPhotographerMedia (){
+export function sortPhotographerMedia (media, filter){
+    const mediaSection = document.querySelector('.photograph-main--media');
+    
 }

@@ -22,8 +22,9 @@ for (const [key, value] of Object.entries(media)) {
     photographerMedia(value)
   }
 
-// Modal
 
+  
+// Modal
 // open/close
 document.querySelector('.open').addEventListener("click", displayModal);
 document.querySelector('.close').addEventListener("click", closeModal);
