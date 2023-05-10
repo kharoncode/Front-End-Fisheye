@@ -86,7 +86,7 @@ export function photographerMedia(data){
 
     const mediaSection = document.querySelector('.photograph-main--media');
 
-    const picture = `assets/media/${photographerId}/${image}`;
+    const picture = `assets/media/${photographerId}/mini/${image}`;
     const mediaCard = document.createElement('div');
     mediaCard.className = 'photograph-main--media-Card'
 
