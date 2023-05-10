@@ -64,7 +64,7 @@ export function photographerPage(data, like){
     info_elt.appendChild(photographerLocation);
     info_elt.appendChild(photographerTagline);
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/mini/${portrait}`;
     // Picture (portrait)
     const img = document.querySelector(".picture")
     img.src = picture;
