@@ -23,7 +23,45 @@ for (const [key, value] of Object.entries(media)) {
   }
 
 
-  
+
+
+
+// Select
+const select_elt = document.querySelector('select');
+select_elt.addEventListener('change',(e)=>{
+    const option = e.target.selectedIndex;
+    if(option === 0){
+        const mediaPopularity = Object.assign(media);
+        mediaPopularity.sort((a,b)=>{
+            return b.likes - a.likes;
+        });
+        document.querySelector('.photograph-main--media').innerHTML="";
+        for (const [key, value] of Object.entries(mediaPopularity)) {
+            photographerMedia(value);
+          };
+    } else if(option === 1){
+        const mediaPopularity = Object.assign(media);
+        mediaPopularity.sort((a,b)=>{
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        document.querySelector('.photograph-main--media').innerHTML="";
+        for (const [key, value] of Object.entries(mediaPopularity)) {
+            photographerMedia(value);
+          };
+    } else if(option === 2){
+        const mediaPopularity = Object.assign(media);
+        mediaPopularity.sort((a,b)=>{
+            return a.title.localeCompare(b.title);
+        });
+        document.querySelector('.photograph-main--media').innerHTML="";
+        for (const [key, value] of Object.entries(mediaPopularity)) {
+            photographerMedia(value);
+          };
+    }
+}
+)
+
+ 
 // Modal
 // open/close
 document.querySelector('.open').addEventListener("click", displayModal);
@@ -37,3 +75,5 @@ submit.addEventListener('submit', (event)=>{
 // Modal Name
 const modalName = document.querySelector('.modal header h3');
 modalName.textContent = `${photographer.name}`;
+
+

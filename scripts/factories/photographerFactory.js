@@ -98,7 +98,7 @@ export function photographerMedia(data){
     const mediaTitle = document.createElement('p');
     mediaTitle.textContent = title;
     const mediaLikes = document.createElement('p');
-    mediaLikes.innerHTML = `${likes} <i class="fa-solid fa-heart"></i>`;
+    mediaLikes.innerHTML = `<span class="total-likes">${likes}</span> <i class="fa-solid fa-heart"></i>`;
     mediaCard.appendChild(img);
     mediaCard.appendChild(mediaTitle);
     mediaCard.appendChild(mediaLikes);
@@ -117,7 +117,7 @@ export function getPhotographer (id, data){
 
 // Get Photographer Media n Likes with ID
 export function getPhotographerMediaLike (id, data){
-    let media = {};
+    let media = [];
     let likes = 0;
     for(let i = 0; i < data.media.length; i++){
         if(data.media[i].photographerId === id){
