@@ -97,6 +97,11 @@
     object-fit: cover;
 }
 
+.photograph-main--media-Card video{
+    width: 350px;
+    height: 300px;
+}
+
 .photograph-footer{
     position: fixed;
     bottom: 0;

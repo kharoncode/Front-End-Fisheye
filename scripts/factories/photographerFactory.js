@@ -68,41 +68,57 @@ export function photographerPage(data, like){
 
     const picture = `assets/photographers/mini/${portrait}`;
     // Picture (portrait)
-    const img = document.querySelector(".picture")
-    img.src = picture;
-    img.alt = `Portrait de ${name}`;
+    const img_elt = document.querySelector(".picture")
+    img_elt.src = picture;
+    img_elt.alt = `Portrait de ${name}`;
 
     // Footer
-    const likeNPrice = document.querySelector('.photograph-footer');
+    const likeNPrice_elt = document.querySelector('.photograph-footer');
     const photographerLike = document.createElement('p');
     photographerLike.innerHTML = `${like} <i class="fa-solid fa-heart"></i>`;
     const photographerPrice = document.createElement('p');
     photographerPrice.textContent = `${price}€ / jour`;
-    likeNPrice.appendChild(photographerLike);
-    likeNPrice.appendChild(photographerPrice);
+    likeNPrice_elt.appendChild(photographerLike);
+    likeNPrice_elt.appendChild(photographerPrice);
 }
 
 // Import JSON-Data Media in photographer.html
 export function photographerMedia(data){
-    const {photographerId, title, image, likes, date, price} = data;
+    for(const media in data){
+        const {photographerId, title, image, video, likes} = data[media];
+    
+        const mediaSection_elt = document.querySelector('.photograph-main--media');
+        const mediaCard = document.createElement('div');
+        mediaCard.className = 'photograph-main--media-Card'
 
-    const mediaSection = document.querySelector('.photograph-main--media');
-
-    const picture = `assets/media/${photographerId}/mini/${image}`;
-    const mediaCard = document.createElement('div');
-    mediaCard.className = 'photograph-main--media-Card'
-
-    const img = document.createElement('img');
-    img.src = picture;
-    img.alt = `Image de ${title}`;
-    const mediaTitle = document.createElement('p');
-    mediaTitle.textContent = title;
-    const mediaLikes = document.createElement('p');
-    mediaLikes.innerHTML = `<span class="total-likes">${likes}</span> <i class="fa-solid fa-heart"></i>`;
-    mediaCard.appendChild(img);
-    mediaCard.appendChild(mediaTitle);
-    mediaCard.appendChild(mediaLikes);
-    mediaSection.appendChild(mediaCard);
+        if(video === undefined){   
+            const img = document.createElement('img');
+            img.src = `assets/media/${photographerId}/mini/${image}`;
+            img.alt = `Image de ${title}`;
+            mediaCard.appendChild(img);
+        }else{
+            const movie = document.createElement('video');
+            movie.width = "350";
+            movie.height = "300";
+            movie.setAttribute("controls", "");
+            const movieAlt = document.createElement('p');
+            movieAlt.innerText = `Video de ${title}`;
+            const source = document.createElement('source');
+            source.src = `assets/media/${photographerId}/${video}`;
+            source.type="video/mp4";
+            mediaCard.appendChild(movie);
+            movie.appendChild(source);
+            movie.appendChild(movieAlt);
+        }
+    
+        const mediaTitle = document.createElement('p');
+        mediaTitle.textContent = title;
+        const mediaLikes = document.createElement('p');
+        mediaLikes.innerHTML = `<span class="total-likes">${likes}</span> <i class="fa-solid fa-heart"></i>`;
+        mediaCard.appendChild(mediaTitle);
+        mediaCard.appendChild(mediaLikes);
+        mediaSection_elt.appendChild(mediaCard);
+    }
 }
 
 // Get Photographer Information with ID
@@ -115,7 +131,7 @@ export function getPhotographer (id, data){
     return {};
 }
 
-// Get Photographer Media n Likes with ID
+// Get Photographer Media n Total Likes with ID
 export function getPhotographerMediaLike (id, data){
     let media = [];
     let likes = 0;
@@ -128,8 +144,9 @@ export function getPhotographerMediaLike (id, data){
     return {media, likes};
 }
 
-// Sort Media
-export function sortPhotographerMedia (media, filter){
-    const mediaSection = document.querySelector('.photograph-main--media');
-    
+export function getPhotographerInfo(id, data){
+    const photographer = getPhotographer(id, data);
+    const {likes, media} = getPhotographerMediaLike(id, data);
+
+    return {photographer, likes, media}
 }

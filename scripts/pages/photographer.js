@@ -1,26 +1,16 @@
 import {displayModal, closeModal} from "../utils/contactForm.js";
-import {photographerPage, photographerMedia, getPhotographer, getPhotographerMediaLike} from "../factories/photographerFactory.js"
+import {photographerPage, photographerMedia, getPhotographerInfo} from "../factories/photographerFactory.js"
 
-// Photographer Page
+// Fetch photographers.json
 const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
-
+// Get Photographer ID
 let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
 
-async function getPhotographerInfo(id, data){
-    const photographer = getPhotographer(id, data);
-    const likes = getPhotographerMediaLike(id, data).likes;
-    const media = getPhotographerMediaLike(id, data).media;
-
-    return {photographer, likes, media}
-}
-
-const {photographer, likes, media} = await getPhotographerInfo(id, photographers);
+// Initialisation
+const {photographer, likes, media} = getPhotographerInfo(id, photographers);
 photographerPage(photographer, likes);
-
-for (const [key, value] of Object.entries(media)) {
-    photographerMedia(value)
-  }
+photographerMedia(media);
 
 // Select
 const select_elt = document.querySelector('select');
@@ -40,13 +30,10 @@ select_elt.addEventListener('change',(e)=>{
         });
     }
     document.querySelector('.photograph-main--media').innerHTML="";
-    for (const [key, value] of Object.entries(media)) {
-        photographerMedia(value);
-      };
+    photographerMedia(media);
 }
 )
 
- 
 // Modal
 // open/close
 document.querySelector('.open').addEventListener("click", displayModal);
