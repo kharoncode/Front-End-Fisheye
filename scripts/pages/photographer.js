@@ -1,4 +1,4 @@
-import {displayModal, closeModal} from "../utils/contactForm.js";
+import {displayModal, closeModal, firstNameModal} from "../utils/contactForm.js";
 import {photographerPage, photographerMedia, getPhotographerInfo} from "../factories/photographerFactory.js"
 
 // Fetch photographers.json
@@ -48,4 +48,7 @@ submit.addEventListener('submit', (event)=>{
 const modalName = document.querySelector('.modal header h3');
 modalName.textContent = `${photographer.name}`;
 
-
+// test
+document.querySelector('#first').addEventListener('change', (e)=>{
+    e.target.value = firstNameModal(e.target, e.target.value).data;
+})

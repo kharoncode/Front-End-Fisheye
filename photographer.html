@@ -27,7 +27,7 @@
           <p>Trier par</p>
           <select name="trier" id="btn-filter">
             <option value="popularite">Popularité</option>
-            <option value="date">Date</option>
+            <option selected value="date">Date</option>
             <option value="titre">Titre</option>
           </select>
         </div>
@@ -48,6 +48,7 @@
 					<div class="form-data">
 						<label for="first">Prénom</label>
 						<input required type="text" id="first" name="first"  >
+            <p class="first-error"></p>
           </div>
           <div class="form-data">
 						<label for="last">Nom</label>
