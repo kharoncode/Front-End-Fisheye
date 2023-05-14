@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/16f0d96f1d.js" crossorigin="anonymous"></script>
+    
     <script type="module" src="scripts/pages/photographer.js"></script>
     <title>Fisheye - photographe </title>
   </head>
@@ -47,24 +48,28 @@
 				<form class="form">
 					<div class="form-data">
 						<label for="first">Prénom</label>
-						<input required type="text" id="first" name="first"  >
-            <p class="first-error"></p>
+						<input required type="text" id="firstName" name="first">
+            <p class="firstName-error"></p>
           </div>
           <div class="form-data">
 						<label for="last">Nom</label>
-						<input required type="text" id="last" name="last"  >
+						<input required type="text" id="lastName" name="last">
+            <p class="lastName-error"></p>
           </div>
           <div class="form-data">
 						<label for="mail">Email</label>
-						<input required type="email" id="mail" name="mail"  >
+						<input required type="email" id="mail" name="mail">
+            <p class="mail-error"></p>
           </div>
           <div class="form-data">
 						<label for="message">Votre message</label>
-						<textarea required type="text" id="message" name="message"  ></textarea>
+						<textarea required type="text" id="message" name="message"></textarea>
+            <p class="message-error"></p>
           </div>
           <button class="contact_button submitButton">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

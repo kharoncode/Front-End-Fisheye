@@ -121,7 +121,7 @@ export function photographerMedia(data){
     }
 }
 
-// Get Photographer Information with ID
+// Get Photographer Identity with ID
 export function getPhotographer (id, data){
     for(let i = 0; i < data.photographers.length; i++){
         if(data.photographers[i].id === id){
@@ -144,9 +144,10 @@ export function getPhotographerMediaLike (id, data){
     return {media, likes};
 }
 
+// Return Photographer Information
 export function getPhotographerInfo(id, data){
     const photographer = getPhotographer(id, data);
-    const {likes, media} = getPhotographerMediaLike(id, data);
+    const {media, likes} = getPhotographerMediaLike(id, data);
 
-    return {photographer, likes, media}
+    return {photographer, media, likes}
 }

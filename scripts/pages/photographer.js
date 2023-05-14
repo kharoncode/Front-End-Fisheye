@@ -1,5 +1,9 @@
-import {displayModal, closeModal, firstNameModal} from "../utils/contactForm.js";
-import {photographerPage, photographerMedia, getPhotographerInfo} from "../factories/photographerFactory.js"
+// Import
+import {photographerPage, photographerMedia, getPhotographerInfo} from "../factories/photographerFactory.js";
+
+// DOM Element
+const modalName_elt = document.querySelector('.modal header h3');
+const select_elt = document.querySelector('select');
 
 // Fetch photographers.json
 const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
@@ -9,11 +13,11 @@ let id = parseInt(params.get('id'));
 
 // Initialisation
 const {photographer, likes, media} = getPhotographerInfo(id, photographers);
+modalName_elt.textContent = `${photographer.name}`;
 photographerPage(photographer, likes);
 photographerMedia(media);
 
 // Select
-const select_elt = document.querySelector('select');
 select_elt.addEventListener('change',(e)=>{
     const option = e.target.selectedIndex;
     if(option === 0){
@@ -32,23 +36,4 @@ select_elt.addEventListener('change',(e)=>{
     document.querySelector('.photograph-main--media').innerHTML="";
     photographerMedia(media);
 }
-)
-
-// Modal
-// open/close
-document.querySelector('.open').addEventListener("click", displayModal);
-document.querySelector('.close').addEventListener("click", closeModal);
-// submit
-const submit = document.querySelector('.form');
-submit.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    closeModal();
-})
-// Modal Name
-const modalName = document.querySelector('.modal header h3');
-modalName.textContent = `${photographer.name}`;
-
-// test
-document.querySelector('#first').addEventListener('change', (e)=>{
-    e.target.value = firstNameModal(e.target, e.target.value).data;
-})
+);
