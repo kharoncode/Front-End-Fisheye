@@ -39,13 +39,19 @@ select_elt.addEventListener('change',(e)=>{
 );
 
 // Increase Photographers Likes when add like to media
-const inputLikes = document.querySelectorAll('.getLikes')
-for(let i =0; i<inputLikes.length; i++){
+const inputLikes_elt = document.querySelectorAll('.getLikes')
+for(let i =0; i<inputLikes_elt.length; i++){
+    const mediaLike = document.querySelector(`.media-likes-${i}`);
     const photographerLikes = document.querySelector('.photographerLikes');
-    inputLikes[i].addEventListener('click', ()=>{
+    inputLikes_elt[i].addEventListener('click', ()=>{
         let getLikes = 0;
-        for(let i =0; i<inputLikes.length; i++){
-            if(inputLikes[i].checked){
+        if(inputLikes_elt[i].checked){
+            mediaLike.textContent++
+        } else {
+            mediaLike.textContent--
+        }
+        for(let i =0; i<inputLikes_elt.length; i++){
+            if(inputLikes_elt[i].checked){
                 getLikes ++;
             }
         }

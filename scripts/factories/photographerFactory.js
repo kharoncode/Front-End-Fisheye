@@ -84,6 +84,7 @@ export function photographerPage(data, like){
 
 // Import JSON-Data Media in photographer.html
 export function photographerMedia(data){
+    let mediaIndex = 0;
     for(const media in data){
         const {id, photographerId, title, image, video, likes} = data[media];
     
@@ -114,11 +115,13 @@ export function photographerMedia(data){
         const mediaTitle = document.createElement('p');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
-        mediaLikes.innerHTML = `<span class="media-likes">${likes}</span> <input type="checkbox" id="${id}" name="heart" class="getLikes"> <label for="${id}" ><i class="fa-regular fa-heart"></i></label>`;
+        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="${id}" name="heart" class="getLikes"> <label for="${id}" ><i class="fa-regular fa-heart"></i></label>`;
         mediaCard.appendChild(mediaTitle);
         mediaCard.appendChild(mediaLikes);
         mediaSection_elt.appendChild(mediaCard);
+        mediaIndex++
     }
+    
 }
 
 // Get Photographer Identity with ID
