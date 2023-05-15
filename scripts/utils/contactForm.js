@@ -83,6 +83,7 @@ submit_elt.addEventListener('click', (event)=>{
         messageError_elt.textContent = "";
     }
 
+    // Submit Test
     if(errorForm){
         return false;
     }else{

@@ -89,24 +89,22 @@ export function photographerMedia(data){
     const lightBoxModal_elt = document.querySelector('.lightBox_modal');
 
     let mediaIndex = 0;
-    lightBoxModal_elt.insertAdjacentHTML("beforeend", `<p>X</p>`);
 
     for(const media in data){
         const {id, photographerId, title, image, video, likes} = data[media];
     
         const mediaCard = document.createElement('div');
-        mediaCard.className = `photograph-main--media-Card media-card-${mediaIndex}`
-
-        /* mediaCard.addEventListener('click',()=>{
-            console.log(`click + ${id}`);
-        }) */
+        mediaCard.className = `photograph-main--media-Card`
+        const mediaArt = document.createElement('div');
+        mediaArt.className = `media-art-${mediaIndex}`;
+        mediaCard.appendChild(mediaArt);
 
         let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
         let html_video_small = `<video width="350" height="300"><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
         if(video === undefined){   
-            mediaCard.insertAdjacentHTML("beforeend", html_img_small);
+            mediaArt.insertAdjacentHTML("beforeend", html_img_small);
         }else{
-            mediaCard.insertAdjacentHTML("beforeend", html_video_small);
+            mediaArt.insertAdjacentHTML("beforeend", html_video_small);
         }
     
         const mediaTitle = document.createElement('p');
@@ -118,18 +116,25 @@ export function photographerMedia(data){
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
-        let html_img_large = `<img class="picture-large media-lightbox-${mediaIndex}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_large = `<video class="media-lightbox-${mediaIndex}" width="1050" height="900" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
+        let html_img_large = `<img class="picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_video_large = `<video class="media-lightbox media-lightbox-${id}" width="80%" height="70%" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
         if(video === undefined){   
             lightBoxModal_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
             lightBoxModal_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
+        mediaArt.addEventListener('click',()=>{
+            const mediaLightbox_elt = document.querySelectorAll(".media-lightbox");
+            for(let i=0; i<mediaLightbox_elt.length; i++){
+                mediaLightbox_elt[i].classList.remove("selected");
+            }
+            document.querySelector(`.media-lightbox-${id}`).classList.add("selected");
+            displayLightbox();
+        })
+
         mediaIndex++
-    }
-    
-    
+    } 
 }
 
 // Get Photographer Identity with ID
