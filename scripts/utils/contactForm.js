@@ -1,6 +1,7 @@
 // DOM Element
 const openModal_elt = document.querySelector('.open');
 const closeModal_elt = document.querySelector('.close');
+const modalForm = document.querySelector('form');
 const firstName_elt = document.querySelector('#firstName');
 const lastName_elt = document.querySelector('#lastName');
 const mail_elt = document.querySelector('#mail');
@@ -24,6 +25,12 @@ const errorMessages = {
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "flex";
+    document.addEventListener('keydown', e =>{
+        if(e.key === 'Escape' && modal.style.display === "flex"){
+            closeModal();
+        }
+    });
+    
 }
 function closeModal() {
     const modal = document.getElementById("contact_modal");
