@@ -102,6 +102,14 @@
     height: 300px;
 }
 
+.photograph-main--media-Card input{
+    display: none;
+}
+
+.photograph-main--media-Card input:checked + label>i{
+    font-weight: 1000;
+}
+
 .photograph-footer{
     position: fixed;
     bottom: 0;
@@ -117,6 +125,10 @@
 
 .photograph-footer p{
     font-size: 1.5em;
+}
+
+.photographerLikes{
+    font-size: inherit;
 }
 
 .photograph-footer i{

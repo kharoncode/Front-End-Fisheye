@@ -12,9 +12,9 @@ let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
 
 // Initialisation
-const {photographer, likes, media} = getPhotographerInfo(id, photographers);
+const {photographer, totalLikes, media} = getPhotographerInfo(id, photographers);
 modalName_elt.textContent = `${photographer.name}`;
-photographerPage(photographer, likes);
+photographerPage(photographer, totalLikes);
 photographerMedia(media);
 
 // Select
@@ -37,3 +37,19 @@ select_elt.addEventListener('change',(e)=>{
     photographerMedia(media);
 }
 );
+
+// Increase Photographers Likes when add like to media
+const inputLikes = document.querySelectorAll('.getLikes')
+for(let i =0; i<inputLikes.length; i++){
+    const photographerLikes = document.querySelector('.photographerLikes');
+    inputLikes[i].addEventListener('click', ()=>{
+        let getLikes = 0;
+        for(let i =0; i<inputLikes.length; i++){
+            if(inputLikes[i].checked){
+                getLikes ++;
+            }
+        }
+        let likes = getLikes + totalLikes;
+        photographerLikes.textContent = `${likes}`; 
+    })
+}

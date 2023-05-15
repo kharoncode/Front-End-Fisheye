@@ -74,18 +74,18 @@ export function photographerPage(data, like){
 
     // Footer
     const likeNPrice_elt = document.querySelector('.photograph-footer');
-    const photographerLike = document.createElement('p');
-    photographerLike.innerHTML = `${like} <i class="fa-solid fa-heart"></i>`;
+    const photographerLikes = document.createElement('p');
+    photographerLikes.innerHTML = `<span class="photographerLikes">${like}</span> <i class="fa-solid fa-heart"></i>`;
     const photographerPrice = document.createElement('p');
     photographerPrice.textContent = `${price}€ / jour`;
-    likeNPrice_elt.appendChild(photographerLike);
+    likeNPrice_elt.appendChild(photographerLikes);
     likeNPrice_elt.appendChild(photographerPrice);
 }
 
 // Import JSON-Data Media in photographer.html
 export function photographerMedia(data){
     for(const media in data){
-        const {photographerId, title, image, video, likes} = data[media];
+        const {id, photographerId, title, image, video, likes} = data[media];
     
         const mediaSection_elt = document.querySelector('.photograph-main--media');
         const mediaCard = document.createElement('div');
@@ -114,7 +114,7 @@ export function photographerMedia(data){
         const mediaTitle = document.createElement('p');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
-        mediaLikes.innerHTML = `<span class="total-likes">${likes}</span> <i class="fa-solid fa-heart"></i>`;
+        mediaLikes.innerHTML = `<span class="media-likes">${likes}</span> <input type="checkbox" id="${id}" name="heart" class="getLikes"> <label for="${id}" ><i class="fa-regular fa-heart"></i></label>`;
         mediaCard.appendChild(mediaTitle);
         mediaCard.appendChild(mediaLikes);
         mediaSection_elt.appendChild(mediaCard);
@@ -134,20 +134,20 @@ export function getPhotographer (id, data){
 // Get Photographer Media n Total Likes with ID
 export function getPhotographerMediaLike (id, data){
     let media = [];
-    let likes = 0;
+    let totalLikes = 0;
     for(let i = 0; i < data.media.length; i++){
         if(data.media[i].photographerId === id){
             media[i] = data.media[i];
-            likes += data.media[i].likes;
+            totalLikes += data.media[i].likes;
         }
     }
-    return {media, likes};
+    return {media, totalLikes};
 }
 
 // Return Photographer Information
 export function getPhotographerInfo(id, data){
     const photographer = getPhotographer(id, data);
-    const {media, likes} = getPhotographerMediaLike(id, data);
+    const {media, totalLikes} = getPhotographerMediaLike(id, data);
 
-    return {photographer, media, likes}
+    return {photographer, media, totalLikes}
 }

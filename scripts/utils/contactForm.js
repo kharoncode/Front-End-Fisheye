@@ -80,6 +80,12 @@ submit_elt.addEventListener('click', (event)=>{
         return false;
     }else{
     closeModal();
+    const submitValue = {
+        first: `${firstName_elt.value}`,
+        last: `${lastName_elt.value}`,
+        mail: `${mail_elt.value}`,
+        message: `${message_elt.value}`}
+    return submitValue;
     }
 })
 
