@@ -154,3 +154,15 @@ export function getPhotographerInfo(id, data){
 
     return {photographer, media, totalLikes}
 }
+
+// Increase Photographers Likes and Media Likes when user add like to media
+export function increaseLikes(element, mediaLike){
+    const photographerLikes = document.querySelector('.photographerLikes');
+    if(element.target.checked){
+        mediaLike.textContent++
+        photographerLikes.textContent ++
+    } else {
+        mediaLike.textContent--
+        photographerLikes.textContent --
+    }
+}

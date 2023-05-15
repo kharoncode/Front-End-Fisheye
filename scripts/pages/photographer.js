@@ -1,5 +1,5 @@
 // Import
-import {photographerPage, photographerMedia, getPhotographerInfo} from "../factories/photographerFactory.js";
+import {photographerPage, photographerMedia, getPhotographerInfo, increaseLikes} from "../factories/photographerFactory.js";
 
 // DOM Element
 const modalName_elt = document.querySelector('.modal header h3');
@@ -38,24 +38,9 @@ select_elt.addEventListener('change',(e)=>{
 }
 );
 
-// Increase Photographers Likes when add like to media
+// Favoris Media
 const inputLikes_elt = document.querySelectorAll('.getLikes')
 for(let i =0; i<inputLikes_elt.length; i++){
     const mediaLike = document.querySelector(`.media-likes-${i}`);
-    const photographerLikes = document.querySelector('.photographerLikes');
-    inputLikes_elt[i].addEventListener('click', ()=>{
-        let getLikes = 0;
-        if(inputLikes_elt[i].checked){
-            mediaLike.textContent++
-        } else {
-            mediaLike.textContent--
-        }
-        for(let i =0; i<inputLikes_elt.length; i++){
-            if(inputLikes_elt[i].checked){
-                getLikes ++;
-            }
-        }
-        let likes = getLikes + totalLikes;
-        photographerLikes.textContent = `${likes}`; 
-    })
+    inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike)})
 }
