@@ -84,32 +84,29 @@ export function photographerPage(data, like){
 
 // Import JSON-Data Media in photographer.html
 export function photographerMedia(data){
+    // DOM Elements
+    const mediaSection_elt = document.querySelector('.photograph-main--media');
+    const lightBoxModal_elt = document.querySelector('.lightBox_modal');
+
     let mediaIndex = 0;
+    lightBoxModal_elt.insertAdjacentHTML("beforeend", `<p>X</p>`);
+
     for(const media in data){
         const {id, photographerId, title, image, video, likes} = data[media];
     
-        const mediaSection_elt = document.querySelector('.photograph-main--media');
         const mediaCard = document.createElement('div');
-        mediaCard.className = 'photograph-main--media-Card'
+        mediaCard.className = `photograph-main--media-Card media-card-${mediaIndex}`
 
+        /* mediaCard.addEventListener('click',()=>{
+            console.log(`click + ${id}`);
+        }) */
+
+        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_video_small = `<video width="350" height="300"><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
         if(video === undefined){   
-            const img = document.createElement('img');
-            img.src = `assets/media/${photographerId}/mini/${image}`;
-            img.alt = `Image de ${title}`;
-            mediaCard.appendChild(img);
+            mediaCard.insertAdjacentHTML("beforeend", html_img_small);
         }else{
-            const movie = document.createElement('video');
-            movie.width = "350";
-            movie.height = "300";
-            movie.setAttribute("controls", "");
-            const movieAlt = document.createElement('p');
-            movieAlt.innerText = `Video de ${title}`;
-            const source = document.createElement('source');
-            source.src = `assets/media/${photographerId}/${video}`;
-            source.type="video/mp4";
-            mediaCard.appendChild(movie);
-            movie.appendChild(source);
-            movie.appendChild(movieAlt);
+            mediaCard.insertAdjacentHTML("beforeend", html_video_small);
         }
     
         const mediaTitle = document.createElement('p');
@@ -119,8 +116,19 @@ export function photographerMedia(data){
         mediaCard.appendChild(mediaTitle);
         mediaCard.appendChild(mediaLikes);
         mediaSection_elt.appendChild(mediaCard);
+
+        // LightBox
+        let html_img_large = `<img class="picture-large media-lightbox-${mediaIndex}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_video_large = `<video class="media-lightbox-${mediaIndex}" width="1050" height="900" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
+        if(video === undefined){   
+            lightBoxModal_elt.insertAdjacentHTML("beforeend", html_img_large);
+        }else{
+            lightBoxModal_elt.insertAdjacentHTML("beforeend", html_video_large);
+        }
+
         mediaIndex++
     }
+    
     
 }
 
@@ -136,23 +144,23 @@ export function getPhotographer (id, data){
 
 // Get Photographer Media n Total Likes with ID
 export function getPhotographerMediaLike (id, data){
-    let media = [];
+    let medias = [];
     let totalLikes = 0;
     for(let i = 0; i < data.media.length; i++){
         if(data.media[i].photographerId === id){
-            media[i] = data.media[i];
+            medias[i] = data.media[i];
             totalLikes += data.media[i].likes;
         }
     }
-    return {media, totalLikes};
+    return {medias, totalLikes};
 }
 
 // Return Photographer Information
 export function getPhotographerInfo(id, data){
     const photographer = getPhotographer(id, data);
-    const {media, totalLikes} = getPhotographerMediaLike(id, data);
+    const {medias, totalLikes} = getPhotographerMediaLike(id, data);
 
-    return {photographer, media, totalLikes}
+    return {photographer, medias, totalLikes}
 }
 
 // Increase Photographers Likes and Media Likes when user add like to media

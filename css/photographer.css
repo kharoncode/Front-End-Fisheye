@@ -148,6 +148,14 @@
     cursor: pointer;
 }
 
+/* Litgh Box */
+.lightBox_modal img.picture-large{
+    width: 1050px;
+    height: 900px;
+    object-fit: cover;
+}
+
+/* Contact Modal */
 .modal {
     position: absolute;
     top: 5%;

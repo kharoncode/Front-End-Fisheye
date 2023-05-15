@@ -12,29 +12,33 @@ let params = (new URL(document.location)).searchParams;
 let id = parseInt(params.get('id'));
 
 // Initialisation
-const {photographer, totalLikes, media} = getPhotographerInfo(id, photographers);
+const {photographer, totalLikes, medias} = getPhotographerInfo(id, photographers);
 modalName_elt.textContent = `${photographer.name}`;
 photographerPage(photographer, totalLikes);
-photographerMedia(media);
+medias.sort((a,b)=>{ // Default Select = Date
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
+photographerMedia(medias);
 
 // Select
 select_elt.addEventListener('change',(e)=>{
     const option = e.target.selectedIndex;
     if(option === 0){
-        media.sort((a,b)=>{
+        medias.sort((a,b)=>{
             return b.likes - a.likes;
         });
     } else if(option === 1){ 
-        media.sort((a,b)=>{
-            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        medias.sort((a,b)=>{
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
         });
     } else if(option === 2){      
-        media.sort((a,b)=>{
+        medias.sort((a,b)=>{
             return a.title.localeCompare(b.title);
         });
     }
     document.querySelector('.photograph-main--media').innerHTML="";
-    photographerMedia(media);
+    document.querySelector('.lightBox_modal').innerHTML="";
+    photographerMedia(medias);
 }
 );
 
