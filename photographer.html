@@ -6,8 +6,6 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/16f0d96f1d.js" crossorigin="anonymous"></script>
-    
-    <script type="module" src="scripts/pages/photographer.js"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -26,7 +24,7 @@
       <div class="photograph-main">
         <div class="photographe-main--filter">
           <p>Trier par</p>
-          <select name="trier" id="btn-filter">
+          <select name="trier" id="btn-filter" aria-label="Order by">
             <option value="popularite">Popularité</option>
             <option selected value="date">Date</option>
             <option value="titre">Titre</option>
@@ -39,10 +37,10 @@
     </main>
 
     <div id="lightBox_modal">
-      <i class="fa-solid fa-xmark close-LightBox"></i>
-      <i class="fa-solid fa-chevron-left left-LightBox"></i>
-      <i class="fa-solid fa-chevron-right right-LightBox"></i>
-      <section class="lightBox_modal-media"></section>
+      <i class="fa-solid fa-xmark close-LightBox" aria-label="Fermer"></i>
+      <i class="fa-solid fa-chevron-left left-LightBox" aria-label="Image précédente"></i>
+      <i class="fa-solid fa-chevron-right right-LightBox" aria-label="Image suivante"></i>
+      <section class="lightBox_modal-media" aria-label="Image closeup view"></section>
     </div>
 
     <div id="contact_modal">
@@ -77,6 +75,7 @@
 				</form>
 			</div>
 		</div>
+    <script type="module" src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/utils/lightBox.js"></script>
   </body>

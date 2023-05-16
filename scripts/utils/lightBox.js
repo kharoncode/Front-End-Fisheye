@@ -1,4 +1,5 @@
 // DOM Element
+const lightBoxModal_elt = document.getElementById('lightBox_modal');
 const closeLightBox_elt = document.querySelector('.close-LightBox');
 const leftLightBox_elt = document.querySelector('.left-LightBox');
 const rightLightBox_elt = document.querySelector('.right-LightBox');

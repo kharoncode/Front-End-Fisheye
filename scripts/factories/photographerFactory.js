@@ -14,7 +14,7 @@ export function photographerCard(data) {
         // Picture (portrait)
         const img = document.createElement( 'img' );
         img.src = picture;
-        img.alt = `Portrait de ${name}`;
+        img.alt = `${name}`;
         // Name
         const photographerName = document.createElement( 'h2' );
         photographerName.textContent = name;
@@ -99,6 +99,15 @@ export function increaseLikes(element, mediaLike, totalLikes){
     }
 }
 
+// Initialisation of increaseLikes function
+export function initIncreaseLikes(totalLikes) {
+    const inputLikes_elt = document.querySelectorAll('.getLikes');
+    for(let i=0; i<inputLikes_elt.length; i++){
+        const mediaLike = document.querySelector(`.media-likes-${i}`);
+        inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike, totalLikes)})
+    }
+}
+
 // Import JSON-data in photographer.html
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
@@ -122,7 +131,7 @@ export function photographerPage(data, like){
     // Picture (portrait)
     const img_elt = document.querySelector(".picture")
     img_elt.src = picture;
-    img_elt.alt = `Portrait de ${name}`;
+    img_elt.alt = `${name}`;
 
     // Footer
     const likeNPrice_elt = document.querySelector('.photograph-footer');
@@ -138,8 +147,7 @@ export function photographerPage(data, like){
 export function photographerMediaCard(data){
     // DOM Elements
     const mediaSection_elt = document.querySelector('.photograph-main--media');
-    /* const lightBoxModal_elt = document.getElementById('lightBox_modal'); */
-    const lightBoxModal_elt = document.querySelector('.lightBox_modal-media');
+    const lightBoxModalCard_elt = document.querySelector('.lightBox_modal-media');
 
     let mediaIndex = 0;
 
@@ -163,7 +171,7 @@ export function photographerMediaCard(data){
         const mediaTitle = document.createElement('p');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
-        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> <label for="input-${id}" ><i class="fa-regular fa-heart"></i></label>`;
+        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> <label for="input-${id}" ><i class="fa-regular fa-heart" aria-label="likes"></i></label>`;
         mediaCard.appendChild(mediaTitle);
         mediaCard.appendChild(mediaLikes);
         mediaSection_elt.appendChild(mediaCard);
@@ -172,9 +180,9 @@ export function photographerMediaCard(data){
         let html_img_large = `<img id="${id}" class="selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
         let html_video_large = `<video id="${id}" class="selected media-lightbox media-lightbox-${id}" width="80%" height="70%" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
         if(video === undefined){   
-            lightBoxModal_elt.insertAdjacentHTML("beforeend", html_img_large);
+            lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
-            lightBoxModal_elt.insertAdjacentHTML("beforeend", html_video_large);
+            lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
         mediaArt.addEventListener('click',()=>{
