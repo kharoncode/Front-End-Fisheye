@@ -4,6 +4,10 @@ import {photographerPage, photographerMedia, getPhotographerInfo, increaseLikes}
 // DOM Element
 const modalName_elt = document.querySelector('.modal header h3');
 const select_elt = document.querySelector('select');
+// DOM LightBox Element
+const closeLightBox_elt = document.querySelector('.close-LightBox');
+const leftLightBox_elt = document.querySelector('.left-LightBox');
+const rightLightBox_elt = document.querySelector('.right-LightBox');
 
 // Fetch photographers.json
 const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
@@ -19,6 +23,14 @@ medias.sort((a,b)=>{ // Default Select = Date
     return new Date(b.date).getTime() - new Date(a.date).getTime();
 });
 photographerMedia(medias);
+
+function initIncreaseLikes() {
+    const inputLikes_elt = document.querySelectorAll('.getLikes');
+    for(let i=0; i<inputLikes_elt.length; i++){
+        const mediaLike = document.querySelector(`.media-likes-${i}`);
+        inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike, totalLikes)})
+    }
+}
 
 // Select
 select_elt.addEventListener('change',(e)=>{
@@ -36,15 +48,27 @@ select_elt.addEventListener('change',(e)=>{
             return a.title.localeCompare(b.title);
         });
     }
+
     document.querySelector('.photograph-main--media').innerHTML="";
-    document.querySelector('.lightBox_modal').innerHTML="";
+    document.querySelector('.lightBox_modal-media').innerHTML="";
     photographerMedia(medias);
+    initIncreaseLikes();
 }
 );
 
 // Favoris Media
-const inputLikes_elt = document.querySelectorAll('.getLikes')
-for(let i =0; i<inputLikes_elt.length; i++){
-    const mediaLike = document.querySelector(`.media-likes-${i}`);
-    inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike)})
-}
+initIncreaseLikes();
+
+// LightBox
+// Close
+closeLightBox_elt.addEventListener('click', closeLightbox);
+// Open => photographerFactory > photographerMedia > LightBox
+// Back
+leftLightBox_elt.addEventListener("click", ()=>{
+    const selected_elt = document.querySelector('.selected');
+    backLightBox(medias, selected_elt);
+});
+// Next
+rightLightBox_elt.addEventListener("click", ()=>{
+    const selected_elt = document.querySelector('.selected');
+    nextLightBox(medias, selected_elt)});

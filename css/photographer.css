@@ -149,7 +149,7 @@
 }
 
 /* Litgh Box */
-.lightBox_modal {
+#lightBox_modal {
     display: none;
     position: fixed;
     top: 0;
@@ -161,25 +161,46 @@
     align-items: center;
 }
 
-.closeLightBox{
+.lightBox_modal-media {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-LightBox{
     position: absolute;
     top: 35px;
     right: 35px;
     font-size: 3em;
 }
 
-.lightBox_modal img.picture-large{
+.left-LightBox, .right-LightBox{
+    position: absolute;
+    font-size: 3em;
+}
+
+.left-LightBox{
+    left: 80px;
+}
+
+.right-LightBox{
+    right: 80px;
+}
+
+#lightBox_modal img.picture-large{
     display: none;
     width: 80%;
-    height: 70%;
+    height: 80%;
     object-fit: cover;
 }
 
-.lightBox_modal video{
+#lightBox_modal video{
     display: none;
 }
 
-.lightBox_modal img.selected, .lightBox_modal video.selected{
+#lightBox_modal img.selected, #lightBox_modal video.selected{
     display: initial;
 }
 

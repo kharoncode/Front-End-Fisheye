@@ -86,7 +86,8 @@ export function photographerPage(data, like){
 export function photographerMedia(data){
     // DOM Elements
     const mediaSection_elt = document.querySelector('.photograph-main--media');
-    const lightBoxModal_elt = document.querySelector('.lightBox_modal');
+    /* const lightBoxModal_elt = document.getElementById('lightBox_modal'); */
+    const lightBoxModal_elt = document.querySelector('.lightBox_modal-media');
 
     let mediaIndex = 0;
 
@@ -110,14 +111,14 @@ export function photographerMedia(data){
         const mediaTitle = document.createElement('p');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
-        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="${id}" name="heart" class="getLikes"> <label for="${id}" ><i class="fa-regular fa-heart"></i></label>`;
+        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> <label for="input-${id}" ><i class="fa-regular fa-heart"></i></label>`;
         mediaCard.appendChild(mediaTitle);
         mediaCard.appendChild(mediaLikes);
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
-        let html_img_large = `<img class="picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_large = `<video class="media-lightbox media-lightbox-${id}" width="80%" height="70%" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
+        let html_img_large = `<img id="${id}" class="selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_video_large = `<video id="${id}" class="selected media-lightbox media-lightbox-${id}" width="80%" height="70%" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
         if(video === undefined){   
             lightBoxModal_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
@@ -131,10 +132,10 @@ export function photographerMedia(data){
             }
             document.querySelector(`.media-lightbox-${id}`).classList.add("selected");
             displayLightbox();
-        })
-
+        });
         mediaIndex++
-    } 
+    }
+
 }
 
 // Get Photographer Identity with ID
@@ -169,13 +170,20 @@ export function getPhotographerInfo(id, data){
 }
 
 // Increase Photographers Likes and Media Likes when user add like to media
-export function increaseLikes(element, mediaLike){
+export function increaseLikes(element, mediaLike, totalLikes){
     const photographerLikes = document.querySelector('.photographerLikes');
+    const inputLikes_elt = document.querySelectorAll('.getLikes')
+    let addLikes = 0;
+    for(let i=0; i<inputLikes_elt.length; i++){
+        if(inputLikes_elt[i].checked){
+            addLikes++
+        }
+    }
     if(element.target.checked){
         mediaLike.textContent++
-        photographerLikes.textContent ++
+        photographerLikes.textContent = (totalLikes+addLikes);
     } else {
         mediaLike.textContent--
-        photographerLikes.textContent --
+        photographerLikes.textContent = (totalLikes+addLikes);
     }
 }
