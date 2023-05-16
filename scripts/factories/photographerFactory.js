@@ -47,6 +47,58 @@ export function photographerCard(data) {
     return { name, picture, getUserCardDOM }
 }
 
+// Get Photographer Identity with ID
+export function getPhotographer (id, data){
+    for(let i = 0; i < data.photographers.length; i++){
+        if(data.photographers[i].id === id){
+            return data.photographers[i];
+        }
+    }
+    return {};
+}
+
+// Get Photographer Media n Total Likes with ID
+export function getPhotographerMediaLike (id, data){
+    let medias = [];
+    let totalLikes = 0;
+    let count = 0;
+    for(let i = 0; i < data.media.length; i++){
+        if(data.media[i].photographerId === id){
+            medias[count] = data.media[i];
+            totalLikes += data.media[i].likes;
+            count++
+        }
+    }
+    return {medias, totalLikes};
+}
+
+// Return Photographer Information
+export function getPhotographerInfo(id, data){
+    const photographer = getPhotographer(id, data);
+    const {medias, totalLikes} = getPhotographerMediaLike(id, data);
+
+    return {photographer, medias, totalLikes}
+}
+
+// Increase Photographers Likes and Media Likes when user add like to media
+export function increaseLikes(element, mediaLike, totalLikes){
+    const photographerLikes = document.querySelector('.photographerLikes');
+    const inputLikes_elt = document.querySelectorAll('.getLikes')
+    let addLikes = 0;
+    for(let i=0; i<inputLikes_elt.length; i++){
+        if(inputLikes_elt[i].checked){
+            addLikes++
+        }
+    }
+    if(element.target.checked){
+        mediaLike.textContent++
+        photographerLikes.textContent = (totalLikes+addLikes);
+    } else {
+        mediaLike.textContent--
+        photographerLikes.textContent = (totalLikes+addLikes);
+    }
+}
+
 // Import JSON-data in photographer.html
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
@@ -83,7 +135,7 @@ export function photographerPage(data, like){
 }
 
 // Import JSON-Data Media in photographer.html
-export function photographerMedia(data){
+export function photographerMediaCard(data){
     // DOM Elements
     const mediaSection_elt = document.querySelector('.photograph-main--media');
     /* const lightBoxModal_elt = document.getElementById('lightBox_modal'); */
@@ -138,52 +190,3 @@ export function photographerMedia(data){
 
 }
 
-// Get Photographer Identity with ID
-export function getPhotographer (id, data){
-    for(let i = 0; i < data.photographers.length; i++){
-        if(data.photographers[i].id === id){
-            return data.photographers[i];
-        }
-    }
-    return {};
-}
-
-// Get Photographer Media n Total Likes with ID
-export function getPhotographerMediaLike (id, data){
-    let medias = [];
-    let totalLikes = 0;
-    for(let i = 0; i < data.media.length; i++){
-        if(data.media[i].photographerId === id){
-            medias[i] = data.media[i];
-            totalLikes += data.media[i].likes;
-        }
-    }
-    return {medias, totalLikes};
-}
-
-// Return Photographer Information
-export function getPhotographerInfo(id, data){
-    const photographer = getPhotographer(id, data);
-    const {medias, totalLikes} = getPhotographerMediaLike(id, data);
-
-    return {photographer, medias, totalLikes}
-}
-
-// Increase Photographers Likes and Media Likes when user add like to media
-export function increaseLikes(element, mediaLike, totalLikes){
-    const photographerLikes = document.querySelector('.photographerLikes');
-    const inputLikes_elt = document.querySelectorAll('.getLikes')
-    let addLikes = 0;
-    for(let i=0; i<inputLikes_elt.length; i++){
-        if(inputLikes_elt[i].checked){
-            addLikes++
-        }
-    }
-    if(element.target.checked){
-        mediaLike.textContent++
-        photographerLikes.textContent = (totalLikes+addLikes);
-    } else {
-        mediaLike.textContent--
-        photographerLikes.textContent = (totalLikes+addLikes);
-    }
-}
