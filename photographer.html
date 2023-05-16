@@ -36,7 +36,7 @@
       </div>
     </main>
 
-    <div id="lightBox_modal">
+    <div id="lightBox_modal" aria-hidden="true">
       <i class="fa-solid fa-xmark close-LightBox" aria-label="Fermer"></i>
       <i class="fa-solid fa-chevron-left left-LightBox" aria-label="Image précédente"></i>
       <i class="fa-solid fa-chevron-right right-LightBox" aria-label="Image suivante"></i>
@@ -47,31 +47,30 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img class="close" src="assets/icons/close.svg" />
-          <h3></h3>
+          <img class="close" src="assets/icons/close.svg" aria-label="Fermer le formulaire de contact">
         </header>
 				<form class="form">
 					<div class="form-data">
 						<label for="first">Prénom</label>
-						<input required type="text" id="firstName" name="first">
+						<input required type="text" id="firstName" name="first" aria-labelledby="first">
             <p class="firstName-error"></p>
           </div>
           <div class="form-data">
 						<label for="last">Nom</label>
-						<input required type="text" id="lastName" name="last">
+						<input required type="text" id="lastName" name="last" aria-labelledby="last">
             <p class="lastName-error"></p>
           </div>
           <div class="form-data">
 						<label for="mail">Email</label>
-						<input required type="email" id="mail" name="mail">
+						<input required type="email" id="mail" name="mail" aria-labelledby="mail">
             <p class="mail-error"></p>
           </div>
           <div class="form-data">
 						<label for="message">Votre message</label>
-						<textarea required type="text" id="message" name="message"></textarea>
+						<textarea required type="text" id="message" name="message" aria-labelledby="message"></textarea>
             <p class="message-error"></p>
           </div>
-          <button class="contact_button submitButton">Envoyer</button>
+          <button class="contact_button submitButton" aria-label="Envoyer">Envoyer</button>
 				</form>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ const rightLightBox_elt = document.querySelector('.right-LightBox');
 function displayLightbox() {
     const modal = document.getElementById("lightBox_modal");
 	modal.style.display = "flex";
+    lightBoxModal_elt.setAttribute("aria-hidden", "false");
     document.addEventListener('keydown', e =>{
         if(e.key === 'Escape' && modal.style.display === "flex"){
             closeLightbox();
@@ -18,6 +19,7 @@ function displayLightbox() {
 function closeLightbox() {
     const modal = document.getElementById("lightBox_modal");
     modal.style.display = "none";
+    lightBoxModal_elt.setAttribute("aria-hidden", "true");;
 }
 
 // Back/Next LightBox

@@ -233,7 +233,7 @@
     right: 35px;
 }
 
-.modal header h2, .modal header h3 {
+.modal header h2{
     font-size: 4em;
     font-weight: normal;
 }
