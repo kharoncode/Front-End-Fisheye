@@ -156,36 +156,45 @@ export function photographerMediaCard(data){
     
         const mediaCard = document.createElement('div');
         mediaCard.className = `photograph-main--media-Card`
-        const mediaArt = document.createElement('div');
-        mediaArt.className = `media-art-${mediaIndex}`;
+        const mediaArt = document.createElement('a');
+        mediaArt.href = "#";
         mediaCard.appendChild(mediaArt);
 
         let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_small = `<video width="350" height="300"><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
+        let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img">
+                                <p>Video de ${title}</p></video>`;
         if(video === undefined){   
             mediaArt.insertAdjacentHTML("beforeend", html_img_small);
         }else{
             mediaArt.insertAdjacentHTML("beforeend", html_video_small);
         }
+
+        const mediaInfo = document.createElement('div');
+        mediaInfo.className = 'photograph-main--media-Card_info'
     
         const mediaTitle = document.createElement('p');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
-        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> <label for="input-${id}" ><i class="fa-regular fa-heart" aria-label="likes"></i></label>`;
-        mediaCard.appendChild(mediaTitle);
-        mediaCard.appendChild(mediaLikes);
+        mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
+                                <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> 
+                                <label for="input-${id}" ><i class="fa-regular fa-heart" aria-label="likes"></i></label>`;
+        mediaInfo.appendChild(mediaTitle);
+        mediaInfo.appendChild(mediaLikes);
+        mediaCard.appendChild(mediaInfo);
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
         let html_img_large = `<img id="${id}" class="selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_large = `<video id="${id}" class="selected media-lightbox media-lightbox-${id}" width="80%" height="70%" controls=""><source src="assets/media/${photographerId}/${video}" type="video/mp4"><p>Video de ${title}</p></video>`;
+        let html_video_large = `<video id="${id}" class="selected media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
+                                <p>Video de ${title}</p></video>`;
         if(video === undefined){   
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
-        mediaArt.addEventListener('click',()=>{
+        mediaArt.addEventListener('click',(e)=>{
+            e.preventDefault();
             const mediaLightbox_elt = document.querySelectorAll(".media-lightbox");
             for(let i=0; i<mediaLightbox_elt.length; i++){
                 mediaLightbox_elt[i].classList.remove("selected");

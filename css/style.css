@@ -77,14 +77,17 @@ header h1 {
 
 .photographer-info--location{
     color: #901C1C;
-    font-size:0.8125em;
+    font-size: 1.3em;
+    /* font-size:0.8125em; */
 }
 
 .photographer-info--tagline{
-    font-size:0.625em;
+    font-size: 1em;
+    /* font-size:0.625em; */
 }
 
 .photographer-info--price{
+    font-size: 0.9em;
     color: #757575;
-    font-size:0.5625em;
+    /* font-size:0.5625em; */
 }
