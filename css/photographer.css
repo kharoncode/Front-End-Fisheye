@@ -1,3 +1,9 @@
+.test{
+    width: 2em;
+    margin-right: 100px;
+    color:#901C1C;
+}
+
 #contact_modal {
     display: none;
     position: fixed;
@@ -53,7 +59,7 @@
     align-items: center;
 }
 
-.photographe-main--filter p{
+.photographe-main--filter label{
     padding-right: 25px;
     font-size: 1.125em;
     font-weight: 700;
@@ -174,13 +180,14 @@
     position: absolute;
     top: 35px;
     right: 35px;
-    font-size: 3em;
+    /* font-size: 3em; */
+    width: 2.5em;
     color:#901C1C;
 }
 
 .left-LightBox, .right-LightBox{
     position: absolute;
-    font-size: 3em;
+    width: 2.5em;
     color:#901C1C;
 }
 
