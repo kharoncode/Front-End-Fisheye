@@ -154,7 +154,7 @@ export function photographerMediaCard(data){
     for(const media in data){
         const {id, photographerId, title, image, video, likes} = data[media];
     
-        const mediaCard = document.createElement('div');
+        const mediaCard = document.createElement('section');
         mediaCard.className = `photograph-main--media-Card`
         const mediaArt = document.createElement('a');
         mediaArt.href = "#";
@@ -184,26 +184,38 @@ export function photographerMediaCard(data){
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
-        let html_img_large = `<img id="${id}" class="selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_large = `<video id="${id}" class="selected media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
-                                <p>Video de ${title}</p></video>`;
+        let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+                                <img  class="picture-large" src="assets/media/${photographerId}/mini/${image}" alt="${title}">
+                                <p>${title}</p>
+                              </section>`;
+        let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+                                    <video " src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
+                                        <p>Video de ${title}</p>
+                                    </video>
+                                    <p>${title}</p>
+                                </section>`;
+        /* let html_img_large = `<img id="${id}" class="media-selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_video_large = `<video id="${id}" class="media-selected media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
+                                <p>Video de ${title}</p></video>`; */
         if(video === undefined){   
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
+        
+
         mediaArt.addEventListener('click',(e)=>{
             e.preventDefault();
             const mediaLightbox_elt = document.querySelectorAll(".media-lightbox");
             for(let i=0; i<mediaLightbox_elt.length; i++){
-                mediaLightbox_elt[i].classList.remove("selected");
+                mediaLightbox_elt[i].classList.remove("media-selected");
             }
-            document.querySelector(`.media-lightbox-${id}`).classList.add("selected");
+            document.querySelector(`.media-lightbox-${id}`).classList.add("media-selected");
             displayLightbox();
         });
+        
         mediaIndex++
     }
 
 }
-

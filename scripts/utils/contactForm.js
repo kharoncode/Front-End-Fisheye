@@ -93,6 +93,7 @@ submit_elt.addEventListener('click', (event)=>{
         last: `${lastName_elt.value}`,
         mail: `${mail_elt.value}`,
         message: `${message_elt.value}`}
+    console.log(submitValue);
     return submitValue;
     }
 })

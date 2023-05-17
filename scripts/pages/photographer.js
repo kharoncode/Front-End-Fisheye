@@ -5,6 +5,7 @@ import {photographerPage, photographerMediaCard, getPhotographerInfo, initIncrea
 const modalName_elt = document.querySelector('.modal header h2');
 const select_elt = document.querySelector('select');
 
+
 // Fetch photographers.json
 const photographers = await fetch('./data/photographers.json').then(photographers => photographers.json());
 // Get Photographer ID
@@ -47,30 +48,4 @@ select_elt.addEventListener('change',(e)=>{
     document.querySelector('.lightBox_modal-media').innerHTML="";
     photographerMediaCard(photographerMedias);
     initIncreaseLikes(totalLikes);
-});
-
-// LightBox
-// Close
-closeLightBox_elt.addEventListener('click', closeLightbox);
-// Open => photographerFactory > photographerMedia > LightBox
-// Back
-leftLightBox_elt.addEventListener("click", ()=>{
-    const selected_elt = document.querySelector('.selected');
-    backLightBox(photographerMedias, selected_elt);
-});
-document.addEventListener('keydown', e =>{
-    const selected_elt = document.querySelector('.selected');
-    if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
-        backLightBox(photographerMedias, selected_elt);
-    }
-});
-// Next
-rightLightBox_elt.addEventListener("click", ()=>{
-    const selected_elt = document.querySelector('.selected');
-    nextLightBox(photographerMedias, selected_elt)});
-document.addEventListener('keydown', e =>{
-    const selected_elt = document.querySelector('.selected');
-    if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
-        nextLightBox(photographerMedias, selected_elt);
-    }
 });

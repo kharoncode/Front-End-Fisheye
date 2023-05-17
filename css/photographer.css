@@ -79,6 +79,7 @@
 
 .photograph-main--media-Card{
     width: 25%;
+    min-width: 240px;
     flex: auto;
     padding: 10px;
 }
@@ -156,14 +157,14 @@
     padding: 50px;
     width: 100%;
     height: 100%;
-    background-color: rgba(196, 196, 196, 0.4);
+    background-color: rgba(255, 255, 255, 0.9);
     justify-content: center;
     align-items: center;
 }
 
-.lightBox_modal-media {
-    width: 100%;
-    height: 100%;
+#lightBox_modal article {
+    width: 90%;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,11 +175,13 @@
     top: 35px;
     right: 35px;
     font-size: 3em;
+    color:#901C1C;
 }
 
 .left-LightBox, .right-LightBox{
     position: absolute;
     font-size: 3em;
+    color:#901C1C;
 }
 
 .left-LightBox{
@@ -189,18 +192,29 @@
     right: 80px;
 }
 
+#lightBox_modal section{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightBox_modal section.media-selected{
+    display: flex;
+}
+
 #lightBox_modal img.picture-large, #lightBox_modal video{
     border-radius: 5px;
-    display: none;
     max-width: 80%;
-    max-height: 80%;
+    max-height: 100vh;
     object-fit: cover;
 }
 
-#lightBox_modal img.selected, #lightBox_modal video.selected{
-    display: initial;
+#lightBox_modal section>p{
+    width: 80%;
+    color:#901C1C;
+    font-size: 1.5em;
 }
-
 
 
 /* Contact Modal */
