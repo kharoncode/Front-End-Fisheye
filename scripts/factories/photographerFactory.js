@@ -80,49 +80,6 @@ export function getPhotographerInfo(id, data){
     return {photographer, medias, totalLikes}
 }
 
-// Increase Photographers Likes and Media Likes when user add like to media
-export function increaseLikes(element, mediaLike, totalLikes){
-    const photographerLikes = document.querySelector('.photographerLikes');
-    const inputLikes_elt = document.querySelectorAll('.getLikes');
-    const labelHeart_elt = document.querySelectorAll('.photograph-main--media-Card_info input + label');
-    let addLikes = 0;
-    for(let i=0; i<inputLikes_elt.length; i++){
-        if(inputLikes_elt[i].checked){
-            addLikes++
-        }
-    }
-    if(element.target.checked){
-        mediaLike.textContent++
-        photographerLikes.textContent = (totalLikes+addLikes);
-        for(let i=0; i<labelHeart_elt.length; i++){
-            if(labelHeart_elt[i].htmlFor === element.target.id){
-                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
-                break;
-            }
-        }
-        
-    } else {
-        mediaLike.textContent--
-        photographerLikes.textContent = (totalLikes+addLikes);
-        for(let i=0; i<labelHeart_elt.length; i++){
-            if(labelHeart_elt[i].htmlFor === element.target.id){
-                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes">`;
-                break;
-            }
-        }
-        
-    }
-}
-
-// Initialisation of increaseLikes function
-export function initIncreaseLikes(totalLikes) {
-    const inputLikes_elt = document.querySelectorAll('.getLikes');
-    for(let i=0; i<inputLikes_elt.length; i++){
-        const mediaLike = document.querySelector(`.media-likes-${i}`);
-        inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike, totalLikes)})
-    }
-}
-
 // Import JSON-data in photographer.html
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
@@ -175,7 +132,7 @@ export function photographerMediaCard(data){
         mediaArt.href = "#";
         mediaCard.appendChild(mediaArt);
 
-        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
+        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}, closeup view">`;
         let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img">
                                 <p>Video de ${title}</p></video>`;
         if(video === undefined){   
@@ -192,7 +149,7 @@ export function photographerMediaCard(data){
         const mediaLikes = document.createElement('p');
         mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
                                 <input type="checkbox" id="input-${id}" name="heart-${id}" class="getLikes"> 
-                                <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes"></label>`;
+                                <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Ajouter un like."></label>`;
         mediaInfo.appendChild(mediaTitle);
         mediaInfo.appendChild(mediaLikes);
         mediaCard.appendChild(mediaInfo);
@@ -204,7 +161,7 @@ export function photographerMediaCard(data){
                                 <p>${title}</p>
                               </section>`;
         let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
-                                    <video " src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
+                                    <video " src="assets/media/${photographerId}/${video}" controls>
                                         <p>Video de ${title}</p>
                                     </video>
                                     <p>${title}</p>
@@ -223,11 +180,55 @@ export function photographerMediaCard(data){
             for(let i=0; i<mediaLightbox_elt.length; i++){
                 mediaLightbox_elt[i].classList.remove("media-selected");
             }
-            document.querySelector(`.media-lightbox-${id}`).classList.add("media-selected");
-            displayLightbox();
+            const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
+            mediaLightBoxSelected_elt.classList.add("media-selected");
+            displayLightbox(mediaLightBoxSelected_elt);
         });
         
         mediaIndex++
     }
 
+}
+
+// Increase Photographers Likes and Media Likes when user add like to media
+export function increaseLikes(element, mediaLike, totalLikes){
+    const photographerLikes = document.querySelector('.photographerLikes');
+    const inputLikes_elt = document.querySelectorAll('.getLikes');
+    const labelHeart_elt = document.querySelectorAll('.photograph-main--media-Card_info input + label');
+    let addLikes = 0;
+    for(let i=0; i<inputLikes_elt.length; i++){
+        if(inputLikes_elt[i].checked){
+            addLikes++
+        }
+    }
+    if(element.target.checked){
+        mediaLike.textContent++
+        photographerLikes.textContent = (totalLikes+addLikes);
+        for(let i=0; i<labelHeart_elt.length; i++){
+            if(labelHeart_elt[i].htmlFor === element.target.id){
+                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
+                break;
+            }
+        }
+        
+    } else {
+        mediaLike.textContent--
+        photographerLikes.textContent = (totalLikes+addLikes);
+        for(let i=0; i<labelHeart_elt.length; i++){
+            if(labelHeart_elt[i].htmlFor === element.target.id){
+                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes">`;
+                break;
+            }
+        }
+        
+    }
+}
+
+// Initialisation of increaseLikes function
+export function initIncreaseLikes(totalLikes) {
+    const inputLikes_elt = document.querySelectorAll('.getLikes');
+    for(let i=0; i<inputLikes_elt.length; i++){
+        const mediaLike = document.querySelector(`.media-likes-${i}`);
+        inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike, totalLikes)});
+    }
 }

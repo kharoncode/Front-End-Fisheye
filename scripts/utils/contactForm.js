@@ -1,6 +1,7 @@
 // DOM Element
 const openModal_elt = document.querySelector('.open');
 const closeModal_elt = document.querySelector('.close');
+const modalBackground_elt = document.querySelector('.contact_modal_background');
 const modalForm = document.querySelector('form');
 const firstName_elt = document.querySelector('#firstName');
 const lastName_elt = document.querySelector('#lastName');
@@ -41,6 +42,7 @@ function closeModal() {
 // open/close
 openModal_elt.addEventListener("click", displayModal);
 closeModal_elt.addEventListener("click", closeModal);
+modalBackground_elt.addEventListener('click', closeModal);
 // submit
 
 submit_elt.addEventListener('click', (event)=>{

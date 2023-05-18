@@ -5,9 +5,10 @@ const leftLightBox_elt = document.querySelector('.left-LightBox');
 const rightLightBox_elt = document.querySelector('.right-LightBox');
 
 // Open/Close Lightbox
-function displayLightbox() {
+function displayLightbox(e) {
 	lightBoxModal_elt.style.display = "flex";
     lightBoxModal_elt.setAttribute("aria-hidden", "false");
+    e.children[0].focus();
     document.addEventListener('keydown', e =>{
         if(e.key === 'Escape' && lightBoxModal_elt.style.display === "flex"){
             closeLightbox();
@@ -17,7 +18,7 @@ function displayLightbox() {
 }
 function closeLightbox() {
     lightBoxModal_elt.style.display = "none";
-    lightBoxModal_elt.setAttribute("aria-hidden", "true");;
+    lightBoxModal_elt.setAttribute("aria-hidden", "true");
 }
 
 // Back/Next LightBox
@@ -30,6 +31,7 @@ function backLightBox(data, selected) {
             }
             selected.classList.remove('media-selected');
             document.getElementById(`${data[count].id}`).classList.add('media-selected');
+            document.getElementById(`${data[count].id}`).children[0].focus();
         }
     }
 };
@@ -42,6 +44,7 @@ function nextLightBox(data, selected) {
             }
             selected.classList.remove('media-selected');
             document.getElementById(`${data[count].id}`).classList.add('media-selected');
+            document.getElementById(`${data[count].id}`).children[0].focus();
         }
     }
 };
