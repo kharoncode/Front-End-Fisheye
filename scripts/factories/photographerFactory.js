@@ -83,7 +83,8 @@ export function getPhotographerInfo(id, data){
 // Increase Photographers Likes and Media Likes when user add like to media
 export function increaseLikes(element, mediaLike, totalLikes){
     const photographerLikes = document.querySelector('.photographerLikes');
-    const inputLikes_elt = document.querySelectorAll('.getLikes')
+    const inputLikes_elt = document.querySelectorAll('.getLikes');
+    const labelHeart_elt = document.querySelectorAll('.photograph-main--media-Card_info input + label');
     let addLikes = 0;
     for(let i=0; i<inputLikes_elt.length; i++){
         if(inputLikes_elt[i].checked){
@@ -93,9 +94,21 @@ export function increaseLikes(element, mediaLike, totalLikes){
     if(element.target.checked){
         mediaLike.textContent++
         photographerLikes.textContent = (totalLikes+addLikes);
-    } else {
+        for(let i=0; i<labelHeart_elt.length; i++){
+            if(labelHeart_elt[i].htmlFor === element.target.id){
+                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
+            }
+        }
+        
+    } else if(!element.target.checked){
         mediaLike.textContent--
         photographerLikes.textContent = (totalLikes+addLikes);
+        for(let i=0; i<labelHeart_elt.length; i++){
+            if(labelHeart_elt[i].htmlFor === element.target.id){
+                labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes">`;
+            }
+        }
+        
     }
 }
 
@@ -136,7 +149,7 @@ export function photographerPage(data, like){
     // Footer
     const likeNPrice_elt = document.querySelector('.photograph-footer');
     const photographerLikes = document.createElement('p');
-    photographerLikes.innerHTML = `<span class="photographerLikes">${like}</span> <i class="fa-solid fa-heart"></i>`;
+    photographerLikes.innerHTML = `<span class="photographerLikes">${like}</span> <img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
     const photographerPrice = document.createElement('p');
     photographerPrice.textContent = `${price}€ / jour`;
     likeNPrice_elt.appendChild(photographerLikes);
@@ -177,7 +190,7 @@ export function photographerMediaCard(data){
         const mediaLikes = document.createElement('p');
         mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
                                 <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> 
-                                <label for="input-${id}" ><i class="fa-regular fa-heart" aria-label="likes"></i></label>`;
+                                <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes"></label>`;
         mediaInfo.appendChild(mediaTitle);
         mediaInfo.appendChild(mediaLikes);
         mediaCard.appendChild(mediaInfo);
@@ -194,9 +207,6 @@ export function photographerMediaCard(data){
                                     </video>
                                     <p>${title}</p>
                                 </section>`;
-        /* let html_img_large = `<img id="${id}" class="media-selected picture-large media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/mini/${image}" alt="Image de ${title}">`;
-        let html_video_large = `<video id="${id}" class="media-selected media-lightbox media-lightbox-${id}" src="assets/media/${photographerId}/${video}" autoplay="on" loop="">
-                                <p>Video de ${title}</p></video>`; */
         if(video === undefined){   
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_img_large);
         }else{
@@ -204,7 +214,7 @@ export function photographerMediaCard(data){
         }
 
         
-
+        // Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
         mediaArt.addEventListener('click',(e)=>{
             e.preventDefault();
             const mediaLightbox_elt = document.querySelectorAll(".media-lightbox");

@@ -1,9 +1,3 @@
-.test{
-    width: 2em;
-    margin-right: 100px;
-    color:#901C1C;
-}
-
 #contact_modal {
     display: none;
     position: fixed;
@@ -113,8 +107,11 @@
     display: none;
 }
 
-.photograph-main--media-Card_info input:checked + label>i{
-    font-weight: 1000;
+.photograph-main--media-Card_info input + label>img{
+    width: 0.8em;
+    height: initial;
+    border-radius: initial;
+    filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
 }
 
 .photograph-footer{
@@ -138,8 +135,8 @@
     font-size: inherit;
 }
 
-.photograph-footer i{
-    font-size: 1em;
+.photograph-footer img{
+    width: 1.22em;
 }
 
 .contact_button {
@@ -180,15 +177,14 @@
     position: absolute;
     top: 35px;
     right: 35px;
-    /* font-size: 3em; */
     width: 2.5em;
-    color:#901C1C;
+    filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
 }
 
 .left-LightBox, .right-LightBox{
     position: absolute;
     width: 2.5em;
-    color:#901C1C;
+    filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
 }
 
 .left-LightBox{
