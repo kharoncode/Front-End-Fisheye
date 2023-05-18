@@ -97,15 +97,17 @@ export function increaseLikes(element, mediaLike, totalLikes){
         for(let i=0; i<labelHeart_elt.length; i++){
             if(labelHeart_elt[i].htmlFor === element.target.id){
                 labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
+                break;
             }
         }
         
-    } else if(!element.target.checked){
+    } else {
         mediaLike.textContent--
         photographerLikes.textContent = (totalLikes+addLikes);
         for(let i=0; i<labelHeart_elt.length; i++){
             if(labelHeart_elt[i].htmlFor === element.target.id){
                 labelHeart_elt[i].innerHTML = `<img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes">`;
+                break;
             }
         }
         
@@ -189,7 +191,7 @@ export function photographerMediaCard(data){
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
         mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
-                                <input type="checkbox" id="input-${id}" name="heart" class="getLikes"> 
+                                <input type="checkbox" id="input-${id}" name="heart-${id}" class="getLikes"> 
                                 <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Likes"></label>`;
         mediaInfo.appendChild(mediaTitle);
         mediaInfo.appendChild(mediaLikes);
