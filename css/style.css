@@ -63,6 +63,8 @@ header h1 {
 }
 
 .photographer_section article img {
+    display: block;
+    margin: auto;
     border-radius: 50%;
     height: 200px;
     width: 200px;

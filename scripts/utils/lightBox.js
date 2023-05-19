@@ -24,28 +24,31 @@ function closeLightbox() {
 // Back/Next LightBox
 function backLightBox(data, selected) {
     for(let i = 0; i<data.length; i++){
-        if(parseInt(data[i].id) === parseInt(selected.id)){
-            let count = i-1;
-            if(count<0){
-                count = data.length-1;
+        if(data[i].id === selected.id){
+            let previousI = i-1;
+            if(previousI<0){
+                previousI = data.length-1;
             }
             selected.classList.remove('media-selected');
-            document.getElementById(`${data[count].id}`).classList.add('media-selected');
-            document.getElementById(`${data[count].id}`).children[0].focus();
+            document.getElementById(`${data[previousI].id}`).classList.add('media-selected');
+            document.getElementById(`${data[previousI].id}`).children[0].focus();
+            break;
         }
     }
 };
 function nextLightBox(data, selected) {
     for(let i = 0; i<data.length; i++){
-        if(parseInt(data[i].id) === parseInt(selected.id)){
-            let count = i+1;
-            if(count>(data.length-1)){
-                count = 0;
+        if(data[i].id === selected.id){
+            let nextI = i+1;
+            if(nextI>(data.length-1)){
+                nextI = 0;
             }
             selected.classList.remove('media-selected');
-            document.getElementById(`${data[count].id}`).classList.add('media-selected');
-            document.getElementById(`${data[count].id}`).children[0].focus();
+            document.getElementById(`${data[nextI].id}`).classList.add('media-selected');
+            document.getElementById(`${data[nextI].id}`).children[0].focus();
+            break;
         }
+
     }
 };
 
@@ -55,27 +58,27 @@ closeLightBox_elt.addEventListener('click', closeLightbox);
 // Open => photographerFactory > photographerMedia > LightBox
 // Back
 leftLightBox_elt.addEventListener("click", ()=>{
-    const mediaLightBox_elt = document.querySelectorAll(".media-lightbox");
+    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
     const selected_elt = document.querySelector('.media-selected');
-    backLightBox(mediaLightBox_elt, selected_elt);
+    backLightBox(mediaLightBox_elts, selected_elt);
 });
 document.addEventListener('keydown', e =>{
-    const mediaLightBox_elt = document.querySelectorAll(".media-lightbox");
+    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
     const selected_elt = document.querySelector('.media-selected');
     if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
-        backLightBox(mediaLightBox_elt, selected_elt);
+        backLightBox(mediaLightBox_elts, selected_elt);
     }
 });
 // Next
 rightLightBox_elt.addEventListener("click", ()=>{
-    const mediaLightBox_elt = document.querySelectorAll(".media-lightbox");
+    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
     const selected_elt = document.querySelector('.media-selected');
-    nextLightBox(mediaLightBox_elt, selected_elt)});
+    nextLightBox(mediaLightBox_elts, selected_elt)});
 document.addEventListener('keydown', e =>{
-    const mediaLightBox_elt = document.querySelectorAll(".media-lightbox");
+    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
     const selected_elt = document.querySelector('.media-selected');
     if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
-        nextLightBox(mediaLightBox_elt, selected_elt);
+        nextLightBox(mediaLightBox_elts, selected_elt);
     }
 });
 

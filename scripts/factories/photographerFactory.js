@@ -11,6 +11,7 @@ export function photographerCard(data) {
         // Anchor
         const anchorElement = document.createElement('a');
         anchorElement.href = `photographer.html?id=${id}`;
+        anchorElement.style.display = "block";
         // Picture (portrait)
         const img = document.createElement( 'img' );
         img.src = picture;
@@ -133,7 +134,7 @@ export function photographerMediaCard(data){
         mediaCard.appendChild(mediaArt);
 
         let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}, closeup view">`;
-        let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img">
+        let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img" tabindex="-1">
                                 <p>Video de ${title}</p></video>`;
         if(video === undefined){   
             mediaArt.insertAdjacentHTML("beforeend", html_img_small);

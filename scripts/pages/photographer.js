@@ -2,7 +2,6 @@
 import {photographerPage, photographerMediaCard, getPhotographerInfo, initIncreaseLikes} from "../factories/photographerFactory.js";
 
 // DOM Element
-const modalName_elt = document.querySelector('.modal header h2');
 const select_elt = document.querySelector('select');
 
 
@@ -15,7 +14,8 @@ let id = parseInt(params.get('id'));
 // Initialisation
 const {photographer, totalLikes, medias:photographerMedias} = getPhotographerInfo(id, photographers);
 function init(){
-    modalName_elt.textContent = `Contactez-moi ${photographer.name}`;
+    const modalName_elt = document.querySelector('.modal header h2');
+    modalName_elt.innerHTML = `Contactez-moi </br> ${photographer.name}`;
     modalName_elt.setAttribute("aria-label", `Contactez-moi ${photographer.name}`)
     photographerPage(photographer, totalLikes);
     photographerMedias.sort((a,b)=>{ // Default Select = Date
