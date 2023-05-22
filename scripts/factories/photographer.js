@@ -127,7 +127,6 @@ export function photographerMediaCard(data){
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
-        
         // Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
         mediaArt.addEventListener('click',(e)=>{
             e.preventDefault();
@@ -138,11 +137,9 @@ export function photographerMediaCard(data){
             const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
             mediaLightBoxSelected_elt.classList.add("media-selected");
             displayLightbox(mediaLightBoxSelected_elt);
-        });
-        
+        });     
         mediaIndex++
     }
-
 }
 
 // select
@@ -151,11 +148,10 @@ export function onSelectFilterChanged(){
     const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
     const tempSort = [];
     for (let i = 0; i<mediaCard_elts.length; i++){
-    tempSort[i]=mediaCard_elts[i];
-}
+        tempSort[i]=mediaCard_elts[i];
+    }
     select_elt.addEventListener('change',(e)=>{
         const option = e.target.selectedIndex;
-        const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
         if(option === 0){
             tempSort.sort((a,b)=>{
                 return b.getAttribute("data-likes") - a.getAttribute("data-likes");
