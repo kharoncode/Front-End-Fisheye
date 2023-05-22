@@ -75,10 +75,14 @@ export function photographerMediaCard(data){
     let mediaIndex = 0;
 
     for(const media in data){
-        const {id, photographerId, title, image, video, likes} = data[media];
+        const {id, photographerId, title, image, video, likes, date} = data[media];
     
         const mediaCard = document.createElement('section');
-        mediaCard.className = `photograph-main--media-Card`
+        mediaCard.className = `photograph-main--media-Card`;
+        mediaCard.setAttribute('data-date', `${date}`);
+        mediaCard.setAttribute('data-likes' , `${likes}`);
+        mediaCard.setAttribute('data-title', `${title}`)
+        mediaCard.id = `section-${id}`;
         const mediaArt = document.createElement('a');
         mediaArt.href = "#";
         mediaCard.appendChild(mediaArt);
@@ -127,9 +131,9 @@ export function photographerMediaCard(data){
         // Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
         mediaArt.addEventListener('click',(e)=>{
             e.preventDefault();
-            const mediaLightbox_elt = document.querySelectorAll(".media-lightbox");
-            for(let i=0; i<mediaLightbox_elt.length; i++){
-                mediaLightbox_elt[i].classList.remove("media-selected");
+            const mediaLightbox_elts = document.querySelectorAll(".media-lightbox");
+            for(let i=0; i<mediaLightbox_elts.length; i++){
+                mediaLightbox_elts[i].classList.remove("media-selected");
             }
             const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
             mediaLightBoxSelected_elt.classList.add("media-selected");
@@ -139,4 +143,55 @@ export function photographerMediaCard(data){
         mediaIndex++
     }
 
+}
+
+// select
+export function onSelectFilterChanged(){
+    const select_elt = document.querySelector('select');
+    const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
+    const tempSort = [];
+    for (let i = 0; i<mediaCard_elts.length; i++){
+    tempSort[i]=mediaCard_elts[i];
+}
+    select_elt.addEventListener('change',(e)=>{
+        const option = e.target.selectedIndex;
+        const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
+        if(option === 0){
+            tempSort.sort((a,b)=>{
+                return b.getAttribute("data-likes") - a.getAttribute("data-likes");
+            });
+            for (let i = 0; i<mediaCard_elts.length; i++){
+                for(let j = 0; j<tempSort.length; j++){
+                    if(mediaCard_elts[i].id === tempSort[j].id){
+                        mediaCard_elts[i].style.order = `${j}`;
+                        break;
+                    }
+                }
+            }
+        } else if(option === 1){ 
+            tempSort.sort((a,b)=>{
+                return new Date(b.getAttribute("data-date")).getTime() - new Date(a.getAttribute("data-date")).getTime();
+            });
+            for (let i = 0; i<mediaCard_elts.length; i++){
+                for(let j = 0; j<tempSort.length; j++){
+                    if(mediaCard_elts[i].id === tempSort[j].id){
+                        mediaCard_elts[i].style.order = `${j}`;
+                        break;
+                    }
+                }
+            }
+        } else if(option === 2){      
+            tempSort.sort((a,b)=>{
+                return a.getAttribute("data-title").localeCompare(b.getAttribute("data-title"));
+            });
+            for (let i = 0; i<mediaCard_elts.length; i++){
+                for(let j = 0; j<tempSort.length; j++){
+                    if(mediaCard_elts[i].id === tempSort[j].id){
+                        mediaCard_elts[i].style.order = `${j}`;
+                        break;
+                    }
+                }
+            }
+        }
+    });
 }
