@@ -1,5 +1,7 @@
 // Import
-import {photographerPage, photographerMediaCard, getPhotographerInfo, initIncreaseLikes} from "../factories/photographerFactory.js";
+import {photographerPage, photographerMediaCard, getPhotographerInfo} from "../factories/photographer.js";
+import {initIncreaseLikes} from "../factories/favoris.js";
+
 
 // DOM Element
 const select_elt = document.querySelector('select');

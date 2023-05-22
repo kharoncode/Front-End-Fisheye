@@ -48,7 +48,7 @@ export function photographerCard(data) {
     return { name, picture, getUserCardDOM }
 }
 
-// Get Photographer Identity with ID
+/* // Get Photographer Identity with ID
 export function getPhotographer (id, data){
     for(let i = 0; i < data.photographers.length; i++){
         if(data.photographers[i].id === id){
@@ -189,9 +189,9 @@ export function photographerMediaCard(data){
         mediaIndex++
     }
 
-}
+} */
 
-// Increase Photographers Likes and Media Likes when user add like to media
+/* // Increase Photographers Likes and Media Likes when user add like to media
 export function increaseLikes(element, mediaLike, totalLikes){
     const photographerLikes = document.querySelector('.photographerLikes');
     const inputLikes_elt = document.querySelectorAll('.getLikes');
@@ -232,4 +232,4 @@ export function initIncreaseLikes(totalLikes) {
         const mediaLike = document.querySelector(`.media-likes-${i}`);
         inputLikes_elt[i].addEventListener('click', (e)=>{increaseLikes(e, mediaLike, totalLikes)});
     }
-}
+} */

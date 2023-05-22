@@ -1,4 +1,4 @@
-import {photographerCard} from "../factories/photographerFactory.js";
+import {photographerCard} from "../factories/photographers.js";
    
 async function getPhotographers() {
     return await fetch('./data/photographers.json').then(photographers => photographers.json());
