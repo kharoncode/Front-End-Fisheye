@@ -1,5 +1,5 @@
 // Increase Photographers Likes and Media Likes when user add like to media
-export function increaseLikes(element, mediaLike, totalLikes){
+function increaseLikes(element, mediaLike, totalLikes){
     const photographerLikes = document.querySelector('.photographerLikes');
     const inputLikes_elts = document.querySelectorAll('.getLikes');
     const labelHeart_elts = document.querySelectorAll('.photograph-main--media-Card_info input + label');
@@ -33,7 +33,7 @@ export function increaseLikes(element, mediaLike, totalLikes){
 }
 
 // Initialisation of increaseLikes function
-export function initIncreaseLikes(totalLikes) {
+function initIncreaseLikes(totalLikes) {
     const inputLikes_elts = document.querySelectorAll('.getLikes');
     for(let i=0; i<inputLikes_elts.length; i++){
         const mediaLike = document.querySelector(`.media-likes-${i}`);

@@ -85,6 +85,7 @@ export function photographerMediaCard(data){
         mediaCard.id = `section-${id}`;
         const mediaArt = document.createElement('a');
         mediaArt.href = "#";
+        mediaArt.className = "openLightBox";
         mediaCard.appendChild(mediaArt);
 
         let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}, closeup view">`;
@@ -143,7 +144,7 @@ export function photographerMediaCard(data){
 }
 
 // select
-export function onSelectFilterChanged(){
+export function initSelectFilterChanged(photographerMedias,totalLikes){
     const select_elt = document.querySelector('select');
     const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
     const tempSort = [];
@@ -153,41 +154,23 @@ export function onSelectFilterChanged(){
     select_elt.addEventListener('change',(e)=>{
         const option = e.target.selectedIndex;
         if(option === 0){
-            tempSort.sort((a,b)=>{
-                return b.getAttribute("data-likes") - a.getAttribute("data-likes");
+            photographerMedias.sort((a,b)=>{
+                return b.likes - a.likes;
             });
-            for (let i = 0; i<mediaCard_elts.length; i++){
-                for(let j = 0; j<tempSort.length; j++){
-                    if(mediaCard_elts[i].id === tempSort[j].id){
-                        mediaCard_elts[i].style.order = `${j}`;
-                        break;
-                    }
-                }
-            }
         } else if(option === 1){ 
-            tempSort.sort((a,b)=>{
-                return new Date(b.getAttribute("data-date")).getTime() - new Date(a.getAttribute("data-date")).getTime();
+            photographerMedias.sort((a,b)=>{
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
             });
-            for (let i = 0; i<mediaCard_elts.length; i++){
-                for(let j = 0; j<tempSort.length; j++){
-                    if(mediaCard_elts[i].id === tempSort[j].id){
-                        mediaCard_elts[i].style.order = `${j}`;
-                        break;
-                    }
-                }
-            }
         } else if(option === 2){      
-            tempSort.sort((a,b)=>{
-                return a.getAttribute("data-title").localeCompare(b.getAttribute("data-title"));
+            photographerMedias.sort((a,b)=>{
+                return a.title.localeCompare(b.title);
             });
-            for (let i = 0; i<mediaCard_elts.length; i++){
-                for(let j = 0; j<tempSort.length; j++){
-                    if(mediaCard_elts[i].id === tempSort[j].id){
-                        mediaCard_elts[i].style.order = `${j}`;
-                        break;
-                    }
-                }
-            }
         }
+        document.querySelector('.photograph-main--media').innerHTML="";
+        document.querySelector('.lightBox_modal-media').innerHTML="";
+        photographerMediaCard(photographerMedias);
+        initIncreaseLikes(totalLikes);
     });
-}
+
+};
+

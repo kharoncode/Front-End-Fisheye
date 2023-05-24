@@ -126,7 +126,7 @@
 }
 
 .photograph-main--media-Card_info input:focus-visible + label>img{
-    border: 1px solid #D3573C;
+    border: 1px solid #bdbdbd;
 }
 
 .photograph-main--media-Card_info input + label>img{
@@ -189,7 +189,7 @@
     padding: 50px;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255);
     justify-content: center;
     align-items: center;
 }

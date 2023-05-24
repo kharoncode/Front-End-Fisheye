@@ -1,6 +1,5 @@
 // Import
-import {photographerPage, photographerMediaCard, getPhotographerInfo, onSelectFilterChanged} from "../factories/photographer.js";
-import {initIncreaseLikes} from "../factories/favoris.js";
+import {photographerPage, photographerMediaCard, getPhotographerInfo, initSelectFilterChanged} from "../factories/photographer.js";
 
 async function init(){
     // Fetch photographers.json
@@ -25,7 +24,6 @@ async function init(){
     // Add function to increase Likes
     initIncreaseLikes(totalLikes);
     // Add function to sort Photographer Media with Select
-    onSelectFilterChanged();
+    initSelectFilterChanged(photographerMedias, totalLikes);
 }
-
 init();

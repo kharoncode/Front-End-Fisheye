@@ -3,11 +3,15 @@ const lightBoxModal_elt = document.getElementById('lightBox_modal');
 const closeLightBox_elt = document.querySelector('.close-LightBox');
 const leftLightBox_elt = document.querySelector('.left-LightBox');
 const rightLightBox_elt = document.querySelector('.right-LightBox');
+const header_elt = document.querySelector('header');
+const main_elt = document.querySelector('main');
 
 // Open/Close Lightbox
 function displayLightbox(e) {
 	lightBoxModal_elt.style.display = "flex";
     lightBoxModal_elt.setAttribute("aria-hidden", "false");
+    header_elt.setAttribute("aria-hidden", "true");
+    main_elt.setAttribute("aria-hidden", "true");
     e.children[0].focus();
     document.addEventListener('keydown', e =>{
         if(e.key === 'Escape' && lightBoxModal_elt.style.display === "flex"){
@@ -19,6 +23,8 @@ function displayLightbox(e) {
 function closeLightbox() {
     lightBoxModal_elt.style.display = "none";
     lightBoxModal_elt.setAttribute("aria-hidden", "true");
+    header_elt.setAttribute("aria-hidden", "false");
+    main_elt.setAttribute("aria-hidden", "false");
 }
 
 // Back/Next LightBox
