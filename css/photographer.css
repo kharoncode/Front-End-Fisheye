@@ -1,28 +1,21 @@
-.test{
-    position: absolute;
+body{
+    margin: auto;
     width: 100%;
-    height: 100%;
-    background-color: rgb(255, 0, 0, 0.3);
-    z-index: -1;
+    max-width: 1440px;
 }
 
-#contact_modal {
-    display: none;
-    position: fixed;
-    /* background-color: rgba(196, 196, 196, 0.4); */
-    height: 100%;
-    width: 100%;
-    top: 0;
-    justify-content: center;
+main{
+    padding: 0 100px;
 }
 
 .photograph-header {
-    padding: 0 150px;
+    padding: 0 50px;
     background-color: #FAFAFA;
     height: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .photograph-header h1{
@@ -51,7 +44,7 @@
 .photograph-main {
     position: relative;
     width: 100%;
-    padding: 0 100px 100px 100px;
+    padding-bottom: 100px;
 }
 
 .photographe-main--filter {
@@ -89,7 +82,7 @@
 .photograph-main--media-Card{
     width: 25%;
     min-width: 240px;
-    flex: 20%;
+    flex: 25%;
 }
 
 .photograph-main--media-Card a{
@@ -98,7 +91,7 @@
 }
 
 .photograph-main--media-Card p{
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #901C1C;
 }
 
@@ -114,6 +107,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 5px;
 }
 
 .photograph-main--media-Card_info input{
@@ -126,11 +120,13 @@
 }
 
 .photograph-main--media-Card_info input:focus-visible + label>img{
-    border: 1px solid #bdbdbd;
+    /* border: 1px solid #bdbdbd; */
+    transform: scale(1.2);
+    transition-duration: 0.1s;
 }
 
 .photograph-main--media-Card_info input + label>img{
-    width: 0.8em;
+    width: 0.85em;
     height: initial;
     border-radius: initial;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
@@ -186,6 +182,7 @@
     display: none;
     position: fixed;
     top: 0;
+    left: 0;
     padding: 50px;
     width: 100%;
     height: 100%;
@@ -205,8 +202,8 @@
 .close-LightBox{
     position: absolute;
     top: 35px;
-    right: 35px;
-    width: 2.5em;
+    right: 80px;
+    width: 3em;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
 }
 
@@ -229,6 +226,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 90px 0 90px;
 }
 
 #lightBox_modal section.media-selected{
@@ -237,19 +235,27 @@
 
 #lightBox_modal img.picture-large, #lightBox_modal video{
     border-radius: 5px;
-    max-width: 80%;
-    max-height: 100vh;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 90vh;
 }
 
 #lightBox_modal section>p{
-    width: 80%;
+    width: 100%;
     color:#901C1C;
     font-size: 1.5em;
 }
 
 
 /* Contact Modal */
+#contact_modal {
+    display: none;
+    position: fixed;height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+}
+
 .modal {
     position: absolute;
     top: 4vh;
@@ -314,7 +320,12 @@ form .form-data {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
+    margin-bottom: 15px;
+}
+
+form .form-error {
+    color: rgb(255, 255, 255);
+    font-weight: 700;
 }
 
 form input {

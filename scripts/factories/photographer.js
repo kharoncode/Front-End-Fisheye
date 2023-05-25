@@ -86,6 +86,7 @@ export function photographerMediaCard(data){
         const mediaArt = document.createElement('a');
         mediaArt.href = "#";
         mediaArt.className = "openLightBox";
+        mediaArt.id = `mediaArt-${id}`;
         mediaCard.appendChild(mediaArt);
 
         let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}, closeup view">`;
@@ -113,7 +114,7 @@ export function photographerMediaCard(data){
 
         // LightBox
         let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
-                                <img  class="picture-large" src="assets/media/${photographerId}/mini/${image}" alt="${title}">
+                                <img  class="picture-large" src="assets/media/${photographerId}/large/${image}" alt="${title}">
                                 <p>${title}</p>
                               </section>`;
         let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">

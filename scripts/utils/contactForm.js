@@ -22,10 +22,23 @@ const errorMessages = {
     message : "Veuillez remplir le champ message.",
   }
 
+// Display/Disable Error 
+function displayError(input, error, message){
+    input.style.border = "2px solid red";
+    input.style.backgroundColor = "rgb(255, 227, 227)";
+    error.textContent = message;
+}
+function disableError(input, error){
+    error.textContent = "";
+    input.style.border = "initial";
+    input.style.backgroundColor = "#fff";
+}
+
 // Open/Close Modal
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "flex";
+    firstName_elt.focus();
     document.addEventListener('keydown', e =>{
         if(e.key === 'Escape' && modal.style.display === "flex"){
             closeModal();
@@ -36,6 +49,7 @@ function displayModal() {
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    openModal_elt.focus();
 }
 
 // Modal
@@ -43,8 +57,8 @@ function closeModal() {
 openModal_elt.addEventListener("click", displayModal);
 closeModal_elt.addEventListener("click", closeModal);
 modalBackground_elt.addEventListener('click', closeModal);
-// submit
 
+// submit
 submit_elt.addEventListener('click', (event)=>{
     event.preventDefault();
     let errorForm = false;
@@ -52,37 +66,37 @@ submit_elt.addEventListener('click', (event)=>{
     // First Name Validity
     firstName_elt.value = firstName_elt.value.trim();
     if(!firstName_elt.value){
-        firstNameError_elt.textContent = errorMessages.first;
+        displayError(firstName_elt, firstNameError_elt, errorMessages.first);
         errorForm = true;
     } else {
-        firstNameError_elt.textContent = "";
+        disableError(firstName_elt, firstNameError_elt);
     }
 
     // Last Name Validity
     lastName_elt.value = lastName_elt.value.trim();
     if(!lastName_elt.value){
-        lastNameError_elt.textContent = errorMessages.last;
+        displayError(lastName_elt, lastNameError_elt, errorMessages.last);
         errorForm = true;
     } else {
-        lastNameError_elt.textContent = "";
+        disableError(lastName_elt, lastNameError_elt);
     }
 
     // Mail Validity
     mail_elt.value = mail_elt.value.trim();
     if(!mail_elt.validity.valid){
-        mailError_elt.textContent = errorMessages.mail;
+        displayError(mail_elt, mailError_elt, errorMessages.mail);
         errorForm = true;
     } else {
-        mailError_elt.textContent = "";
+        disableError(mail_elt, mailError_elt);
     }
 
     // Message Validity
     message_elt.value = message_elt.value.trim();
     if(!message_elt.value){
-        messageError_elt.textContent = errorMessages.message;
+        displayError(message_elt, messageError_elt, errorMessages.message);
         errorForm = true;
     } else {
-        messageError_elt.textContent = "";
+        disableError(message_elt, messageError_elt);
     }
 
     // Submit Test

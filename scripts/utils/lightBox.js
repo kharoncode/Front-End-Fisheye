@@ -25,6 +25,8 @@ function closeLightbox() {
     lightBoxModal_elt.setAttribute("aria-hidden", "true");
     header_elt.setAttribute("aria-hidden", "false");
     main_elt.setAttribute("aria-hidden", "false");
+    const selected_elt_id = document.querySelector(".media-selected").id;
+    document.getElementById(`mediaArt-${selected_elt_id}`).focus();
 }
 
 // Back/Next LightBox
