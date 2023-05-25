@@ -254,6 +254,7 @@ main{
     top: 0;
     left: 0;
     justify-content: center;
+    z-index: 2;
 }
 
 .modal {
@@ -300,7 +301,7 @@ main{
 .modal header h2{
     font-size: 3.5em;
     font-weight: normal;
-    padding-bottom: 20px;
+    padding: 0 45px 20px 0;
 }
 
 form {
@@ -316,6 +317,7 @@ form label {
 }
 
 form .form-data {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -324,7 +326,18 @@ form .form-data {
 }
 
 form .form-error {
+    visibility: hidden;
     color: rgb(255, 255, 255);
+    font-weight: 700;
+    padding: 5px 0 0 5px;
+}
+
+form .iconeError{
+    position: absolute;
+    height: 100%;
+    left: -15px;
+    color: red;
+    font-size: 1.5em;
     font-weight: 700;
 }
 
@@ -337,8 +350,15 @@ form input {
     padding-left: 10px;
 }
 
+form input[aria-invalid="true"] {
+    outline: 2px solid red;
+}
+  
+
 form textarea{
     height: 150px;
     width: 100%;
+    max-width: 101%;
     font-size: 1.5em;
+    padding: 5px 10px 5px 10px;
 }

@@ -87,9 +87,10 @@ export function photographerMediaCard(data){
         mediaArt.href = "#";
         mediaArt.className = "openLightBox";
         mediaArt.id = `mediaArt-${id}`;
+        mediaArt.setAttribute('aria-label', `${title}, closeup view`);
         mediaCard.appendChild(mediaArt);
 
-        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}, closeup view">`;
+        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}">`;
         let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img" tabindex="-1">
                                 <p>Video de ${title}</p></video>`;
         if(video === undefined){   
@@ -106,18 +107,18 @@ export function photographerMediaCard(data){
         const mediaLikes = document.createElement('p');
         mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
                                 <input type="checkbox" id="input-${id}" name="heart-${id}" class="getLikes"> 
-                                <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes" aria-label="Ajouter un like."></label>`;
+                                <label for="input-${id}" ><img src="assets/icons/heart-regular.svg" alt="Likes"></label>`;
         mediaInfo.appendChild(mediaTitle);
         mediaInfo.appendChild(mediaLikes);
         mediaCard.appendChild(mediaInfo);
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
-        let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+        let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected" aria-label="image closeup view">
                                 <img  class="picture-large" src="assets/media/${photographerId}/large/${image}" alt="${title}">
                                 <p>${title}</p>
                               </section>`;
-        let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+        let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected" aria-label="image closeup view">
                                     <video " src="assets/media/${photographerId}/${video}" controls>
                                         <p>Video de ${title}</p>
                                     </video>
