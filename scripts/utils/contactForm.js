@@ -8,39 +8,22 @@ const lastName_elt = document.querySelector('#lastName');
 const mail_elt = document.querySelector('#mail');
 const message_elt = document.querySelector('#message');
 const submit_elt = document.querySelector('.submitButton');
-// DOM Element Error
-const firstNameError_elt = document.querySelector('.firstName-error');
-const lastNameError_elt = document.querySelector('.lastName-error');
-const mailError_elt = document.querySelector('.mail-error');
-const messageError_elt = document.querySelector('.message-error');
-
-// Error Messages
-const errorMessages = {
-    first : "Veuillez remplir le champ prénom.",
-    last : "Veuillez remplir le champ nom.",
-    mail : "Veuillez entrer une adresse mail valide.",
-    message : "Veuillez remplir le champ message.",
-  }
 
 // Display/Disable Error 
-function displayError(input, error, message, name){
+function displayError(input, name){
     input.setAttribute("aria-invalid", "true");
     input.style.backgroundColor = "rgb(255, 227, 227)";
     if(document.querySelector(`.sup-${name}`) === null){
-        errorIcone = `<p class='iconeError sup-${name}'>!</p>`
+        errorIcone = `<p class='iconeError sup-${name}' aria-hidden="true">!</p>`
         input.insertAdjacentHTML("beforebegin", errorIcone);
     }
-    /* error.textContent = message; */
-    error.style.visibility = "visible"
 }
-function disableError(input, error, name){
+function disableError(input, name){
     input.setAttribute("aria-invalid", "false");
-    /* error.textContent = ""; */
     input.style.backgroundColor = "#fff";
     if(document.querySelector(`.sup-${name}`) !== null){
         document.querySelector(`.sup-${name}`).remove();
     }
-    error.style.visibility = "hidden"
 }
 
 // Open/Close Modal
@@ -81,37 +64,37 @@ submit_elt.addEventListener('click', (event)=>{
     // First Name Validity
     firstName_elt.value = firstName_elt.value.trim();
     if(!firstName_elt.value){
-        displayError(firstName_elt, firstNameError_elt, errorMessages.first, "first");
+        displayError(firstName_elt, "first");
         errorForm = true;
     } else {
-        disableError(firstName_elt, firstNameError_elt, "first");
+        disableError(firstName_elt, "first");
     }
 
     // Last Name Validity
     lastName_elt.value = lastName_elt.value.trim();
     if(!lastName_elt.value){
-        displayError(lastName_elt, lastNameError_elt, errorMessages.last, "last");
+        displayError(lastName_elt, "last");
         errorForm = true;
     } else {
-        disableError(lastName_elt, lastNameError_elt, "last");
+        disableError(lastName_elt, "last");
     }
 
     // Mail Validity
     mail_elt.value = mail_elt.value.trim();
     if(!mail_elt.validity.valid){
-        displayError(mail_elt, mailError_elt, errorMessages.mail, "mail");
+        displayError(mail_elt, "mail");
         errorForm = true;
     } else {
-        disableError(mail_elt, mailError_elt, "mail");
+        disableError(mail_elt, "mail");
     }
 
     // Message Validity
     message_elt.value = message_elt.value.trim();
     if(!message_elt.value){
-        displayError(message_elt, messageError_elt, errorMessages.message, "message");
+        displayError(message_elt, "message");
         errorForm = true;
     } else {
-        disableError(message_elt, messageError_elt, "message");
+        disableError(message_elt, "message");
     }
 
     // Submit Test

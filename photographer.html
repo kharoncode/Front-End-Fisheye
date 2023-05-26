@@ -51,23 +51,23 @@
 				<form class="form">
 					<div class="form-data">
 						<label for="firstName">Prénom</label>
-						<input required type="text" id="firstName" name="first" aria-labelledby="first">
-            <p class="firstName-error form-error">test</p>
+						<input required type="text" id="firstName" name="first" aria-labelledby="first" aria-errormessage="errFirst">
+            <p id="errFirst" class="firstName-error form-error">Veuillez remplir le champ prénom.</p>
           </div>
           <div class="form-data">
 						<label for="lastName">Nom</label>
-						<input required type="text" id="lastName" name="last" aria-labelledby="last">
-            <p class="lastName-error form-error"></p>
+						<input required type="text" id="lastName" name="last" aria-labelledby="last" aria-errormessage="errLast">
+            <p id="errLast" class="lastName-error form-error">Veuillez remplir le champ nom.</p>
           </div>
           <div class="form-data">
 						<label for="mail">Email</label>
-						<input required type="email" id="mail" name="mail" aria-labelledby="mail">
-            <p class="mail-error form-error"></p>
+						<input required type="email" id="mail" name="mail" aria-labelledby="mail" aria-errormessage="errMail">
+            <p id="errMail" class="mail-error form-error">Veuillez entrer une adresse mail valide.</p>
           </div>
           <div class="form-data">
 						<label for="message">Votre message</label>
-						<textarea required id="message" name="message" aria-labelledby="message"></textarea>
-            <p class="message-error form-error"></p>
+						<textarea required id="message" name="message" aria-labelledby="message" aria-errormessage="errMessage"></textarea>
+            <p id="errMessage" class="message-error form-error">Veuillez remplir le champ message.</p>
           </div>
           <button class="contact_button submitButton" aria-label="Envoyer">Envoyer</button>
 				</form>
