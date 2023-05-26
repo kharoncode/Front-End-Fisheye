@@ -1,2 +1,6 @@
  
 /assets/photographers/large
+/node_modules
+package-lock.json
+package.json
+.eslintrc

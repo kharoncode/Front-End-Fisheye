@@ -2,7 +2,6 @@
 const openModal_elt = document.querySelector('.open');
 const closeModal_elt = document.querySelector('.close');
 const modalBackground_elt = document.querySelector('.contact_modal_background');
-const modalForm = document.querySelector('form');
 const firstName_elt = document.querySelector('#firstName');
 const lastName_elt = document.querySelector('#lastName');
 const mail_elt = document.querySelector('#mail');
@@ -13,7 +12,7 @@ const submit_elt = document.querySelector('.submitButton');
 function displayError(input, name){
     input.setAttribute("aria-invalid", "true");
     if(document.querySelector(`.sup-${name}`) === null){
-        errorIcone = `<p class='iconeError sup-${name}' aria-hidden="true">!</p>`
+        let errorIcone = `<p class='iconeError sup-${name}' aria-hidden="true">!</p>`
         input.insertAdjacentHTML("beforebegin", errorIcone);
     }
 }

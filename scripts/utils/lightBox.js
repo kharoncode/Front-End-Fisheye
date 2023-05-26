@@ -43,7 +43,8 @@ function backLightBox(data, selected) {
             break;
         }
     }
-};
+}
+
 function nextLightBox(data, selected) {
     for(let i = 0; i<data.length; i++){
         if(data[i].id === selected.id){
@@ -58,7 +59,7 @@ function nextLightBox(data, selected) {
         }
 
     }
-};
+}
 
 
 // Close

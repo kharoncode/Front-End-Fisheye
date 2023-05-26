@@ -174,5 +174,5 @@ export function initSelectFilterChanged(photographerMedias,totalLikes){
         initIncreaseLikes(totalLikes);
     });
 
-};
+}
 
