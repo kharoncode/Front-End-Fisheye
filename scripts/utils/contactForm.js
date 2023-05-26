@@ -12,7 +12,6 @@ const submit_elt = document.querySelector('.submitButton');
 // Display/Disable Error 
 function displayError(input, name){
     input.setAttribute("aria-invalid", "true");
-    input.style.backgroundColor = "rgb(255, 227, 227)";
     if(document.querySelector(`.sup-${name}`) === null){
         errorIcone = `<p class='iconeError sup-${name}' aria-hidden="true">!</p>`
         input.insertAdjacentHTML("beforebegin", errorIcone);
@@ -20,7 +19,6 @@ function displayError(input, name){
 }
 function disableError(input, name){
     input.setAttribute("aria-invalid", "false");
-    input.style.backgroundColor = "#fff";
     if(document.querySelector(`.sup-${name}`) !== null){
         document.querySelector(`.sup-${name}`).remove();
     }

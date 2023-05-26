@@ -1,5 +1,5 @@
 // Get Photographer Identity with ID
-export function getPhotographer (id, data){
+function getPhotographer (id, data){
     for(let i = 0; i < data.photographers.length; i++){
         if(data.photographers[i].id === id){
             return data.photographers[i];
@@ -9,15 +9,15 @@ export function getPhotographer (id, data){
 }
 
 // Get Photographer Media n Total Likes with ID
-export function getPhotographerMediaLike (id, data){
+function getPhotographerMediaLike (id, data){
     let medias = [];
     let totalLikes = 0;
-    let count = 0;
+    let mediaIndex = 0;
     for(let i = 0; i < data.media.length; i++){
         if(data.media[i].photographerId === id){
-            medias[count] = data.media[i];
+            medias[mediaIndex] = data.media[i];
             totalLikes += data.media[i].likes;
-            count++
+            mediaIndex++
         }
     }
     return {medias, totalLikes};
@@ -29,6 +29,17 @@ export function getPhotographerInfo(id, data){
     const {medias, totalLikes} = getPhotographerMediaLike(id, data);
 
     return {photographer, medias, totalLikes}
+}
+
+// Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
+function addMediaSelected (id){
+    const mediaLightbox_elts = document.querySelectorAll(".media-lightbox");
+            for(let i=0; i<mediaLightbox_elts.length; i++){
+                mediaLightbox_elts[i].classList.remove("media-selected");
+            }
+            const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
+            mediaLightBoxSelected_elt.classList.add("media-selected");
+            displayLightbox(mediaLightBoxSelected_elt);
 }
 
 // Import JSON-data.photographers in photographer.html
@@ -75,28 +86,19 @@ export function photographerMediaCard(data){
     let mediaIndex = 0;
 
     for(const media in data){
-        const {id, photographerId, title, image, video, likes, date} = data[media];
+        const {id, photographerId, title, image, video, likes} = data[media];
     
         const mediaCard = document.createElement('section');
         mediaCard.className = `photograph-main--media-Card`;
-        mediaCard.setAttribute('data-date', `${date}`);
-        mediaCard.setAttribute('data-likes' , `${likes}`);
-        mediaCard.setAttribute('data-title', `${title}`)
         mediaCard.id = `section-${id}`;
-        const mediaArt = document.createElement('a');
-        mediaArt.href = "#";
-        mediaArt.className = "openLightBox";
-        mediaArt.id = `mediaArt-${id}`;
-        mediaArt.setAttribute('aria-label', `${title}, closeup view`);
-        mediaCard.appendChild(mediaArt);
 
-        let html_img_small = `<img src="assets/media/${photographerId}/mini/${image}" alt="${title}">`;
-        let html_video_small = `<video src="assets/media/${photographerId}/${video}" role="img" tabindex="-1">
+        let html_img_small = `<img id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/mini/${image}" alt="${title}" aria-label="${title}, closeup view" tabindex="0">`;
+        let html_video_small = `<video id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/${video}" role="img" aria-label="${title}, closeup view" tabindex="0">
                                 <p>Video de ${title}</p></video>`;
         if(video === undefined){   
-            mediaArt.insertAdjacentHTML("beforeend", html_img_small);
+            mediaCard.insertAdjacentHTML("beforeend", html_img_small);
         }else{
-            mediaArt.insertAdjacentHTML("beforeend", html_video_small);
+            mediaCard.insertAdjacentHTML("beforeend", html_video_small);
         }
 
         const mediaInfo = document.createElement('div');
@@ -130,17 +132,15 @@ export function photographerMediaCard(data){
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
 
-        // Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
-        mediaArt.addEventListener('click',(e)=>{
-            e.preventDefault();
-            const mediaLightbox_elts = document.querySelectorAll(".media-lightbox");
-            for(let i=0; i<mediaLightbox_elts.length; i++){
-                mediaLightbox_elts[i].classList.remove("media-selected");
-            }
-            const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
-            mediaLightBoxSelected_elt.classList.add("media-selected");
-            displayLightbox(mediaLightBoxSelected_elt);
+        // Remove/Add class "media-selected" on selected media
+        document.getElementById(`mediaArt-${id}`).addEventListener('click',()=>{
+            addMediaSelected(id);
         });     
+        document.getElementById(`mediaArt-${id}`).addEventListener('keypress',(e)=>{
+            if(e.key === 'Enter'){
+                addMediaSelected(id);
+            }
+        });  
         mediaIndex++
     }
 }
