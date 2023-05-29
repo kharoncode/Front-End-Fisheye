@@ -35,6 +35,7 @@ export function getPhotographerInfo(id, data){
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
 
+    const photographHeader_Elt = document.querySelector('.photograph-header');
     const info_elt = document.querySelector('.photograph-header--info');
     const photographerName = document.createElement('h1');
     photographerName.textContent = name;
@@ -50,11 +51,9 @@ export function photographerPage(data, like){
     info_elt.appendChild(photographerLocation);
     info_elt.appendChild(photographerTagline);
 
-    const picture = `assets/photographers/mini/${portrait}`;
     // Picture (portrait)
-    const img_elt = document.querySelector(".picture")
-    img_elt.src = picture;
-    img_elt.alt = `${name}`;
+    let picture = `<img class="picture" src="assets/photographers/mini/${portrait}" alt="${name}">`;
+    photographHeader_Elt.insertAdjacentHTML("beforeend", picture);
 
     // Footer
     const likeNPrice_elt = document.querySelector('.photograph-footer');
