@@ -31,17 +31,6 @@ export function getPhotographerInfo(id, data){
     return {photographer, medias, totalLikes}
 }
 
-// Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
-function addMediaSelected (id){
-    const mediaLightbox_elts = document.querySelectorAll(".media-lightbox");
-            for(let i=0; i<mediaLightbox_elts.length; i++){
-                mediaLightbox_elts[i].classList.remove("media-selected");
-            }
-            const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
-            mediaLightBoxSelected_elt.classList.add("media-selected");
-            displayLightbox(mediaLightBoxSelected_elt);
-}
-
 // Import JSON-data.photographers in photographer.html
 export function photographerPage(data, like){
     const { name, portrait, city, country, tagline, price} = data;
@@ -131,48 +120,9 @@ export function photographerMediaCard(data){
         }else{
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_video_large);
         }
-
-        // Remove/Add class "media-selected" on selected media
-        document.getElementById(`mediaArt-${id}`).addEventListener('click',()=>{
-            addMediaSelected(id);
-        });     
-        document.getElementById(`mediaArt-${id}`).addEventListener('keypress',(e)=>{
-            if(e.key === 'Enter'){
-                addMediaSelected(id);
-            }
-        });  
         mediaIndex++
     }
 }
 
-// select
-export function initSelectFilterChanged(photographerMedias,totalLikes){
-    const select_elt = document.querySelector('select');
-    const mediaCard_elts = document.querySelectorAll(".photograph-main--media-Card");
-    const tempSort = [];
-    for (let i = 0; i<mediaCard_elts.length; i++){
-        tempSort[i]=mediaCard_elts[i];
-    }
-    select_elt.addEventListener('change',(e)=>{
-        const option = e.target.selectedIndex;
-        if(option === 0){
-            photographerMedias.sort((a,b)=>{
-                return b.likes - a.likes;
-            });
-        } else if(option === 1){ 
-            photographerMedias.sort((a,b)=>{
-                return new Date(b.date).getTime() - new Date(a.date).getTime();
-            });
-        } else if(option === 2){      
-            photographerMedias.sort((a,b)=>{
-                return a.title.localeCompare(b.title);
-            });
-        }
-        document.querySelector('.photograph-main--media').innerHTML="";
-        document.querySelector('.lightBox_modal-media').innerHTML="";
-        photographerMediaCard(photographerMedias);
-        initIncreaseLikes(totalLikes);
-    });
 
-}
 

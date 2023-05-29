@@ -7,6 +7,8 @@ const lastName_elt = document.querySelector('#lastName');
 const mail_elt = document.querySelector('#mail');
 const message_elt = document.querySelector('#message');
 const submit_elt = document.querySelector('.submitButton');
+const header_elt = document.querySelector('header');
+const main_elt = document.querySelector('main');
 
 // Display/Disable Error 
 function displayError(input, name){
@@ -41,7 +43,7 @@ function displayModal() {
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
-    lightBoxModal_elt.setAttribute("aria-hidden", "true");
+    modal.setAttribute("aria-hidden", "true");
     header_elt.setAttribute("aria-hidden", "false");
     main_elt.setAttribute("aria-hidden", "false");
     openModal_elt.focus();

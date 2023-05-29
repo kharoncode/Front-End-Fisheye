@@ -33,7 +33,7 @@ function increaseLikes(element, mediaLike, totalLikes){
 }
 
 // Initialisation of increaseLikes function
-function initIncreaseLikes(totalLikes) {
+export function initIncreaseLikes(totalLikes) {
     const inputLikes_elts = document.querySelectorAll('.getLikes');
     for(let i=0; i<inputLikes_elts.length; i++){
         const mediaLike = document.querySelector(`.media-likes-${i}`);

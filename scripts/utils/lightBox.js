@@ -61,33 +61,58 @@ function nextLightBox(data, selected) {
     }
 }
 
+// Remove all media-selected of media-lightbox Element and add media-selected on the selected media-lightbox element
+function addMediaSelected (id){
+    const mediaLightbox_elts = document.querySelectorAll(".media-lightbox");
+            for(let i=0; i<mediaLightbox_elts.length; i++){
+                mediaLightbox_elts[i].classList.remove("media-selected");
+            }
+            const mediaLightBoxSelected_elt = document.querySelector(`.media-lightbox-${id}`);
+            mediaLightBoxSelected_elt.classList.add("media-selected");
+            displayLightbox(mediaLightBoxSelected_elt);
+}
 
-// Close
-closeLightBox_elt.addEventListener('click', closeLightbox);
-// Open => photographerFactory > photographerMedia > LightBox
-// Back
-leftLightBox_elt.addEventListener("click", ()=>{
-    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-    const selected_elt = document.querySelector('.media-selected');
-    backLightBox(mediaLightBox_elts, selected_elt);
-});
-document.addEventListener('keydown', e =>{
-    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-    const selected_elt = document.querySelector('.media-selected');
-    if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
+// Remove/Add class "media-selected" on selected media
+export function initLightBox() {
+    // Close
+    closeLightBox_elt.addEventListener('click', closeLightbox);
+    // Open (Remove/Add class "media-selected" on selected media)
+    const openLightBox_elts = document.querySelectorAll('.openLightBox');
+        for(let i =0; i<openLightBox_elts.length; i++){
+            let eltID = openLightBox_elts[i].id.match(/\d+/);
+            document.getElementById(`mediaArt-${eltID}`).addEventListener('click',()=>{
+                addMediaSelected(eltID);
+            });     
+            document.getElementById(`mediaArt-${eltID}`).addEventListener('keypress',(e)=>{
+                if(e.key === 'Enter'){
+                    addMediaSelected(eltID);
+                }
+            });  
+        }
+    // Back
+    leftLightBox_elt.addEventListener("click", ()=>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
         backLightBox(mediaLightBox_elts, selected_elt);
-    }
-});
-// Next
-rightLightBox_elt.addEventListener("click", ()=>{
-    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-    const selected_elt = document.querySelector('.media-selected');
-    nextLightBox(mediaLightBox_elts, selected_elt)});
-document.addEventListener('keydown', e =>{
-    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-    const selected_elt = document.querySelector('.media-selected');
-    if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
-        nextLightBox(mediaLightBox_elts, selected_elt);
-    }
-});
+    });
+    document.addEventListener('keydown', e =>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
+        if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
+            backLightBox(mediaLightBox_elts, selected_elt);
+        }
+    });
+    // Next
+    rightLightBox_elt.addEventListener("click", ()=>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
+        nextLightBox(mediaLightBox_elts, selected_elt)});
+    document.addEventListener('keydown', e =>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
+        if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
+            nextLightBox(mediaLightBox_elts, selected_elt);
+        }
+    });
+}
 
