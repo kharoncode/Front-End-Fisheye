@@ -37,6 +37,9 @@ export function photographerPage(data, like){
 
     const photographHeader_Elt = document.querySelector('.photograph-header');
     const info_elt = document.querySelector('.photograph-header--info');
+    const likeNPrice_elt = document.querySelector('.photograph-footer');
+    
+    // Name
     const photographerName = document.createElement('h1');
     photographerName.textContent = name;
     // Location
@@ -56,7 +59,6 @@ export function photographerPage(data, like){
     photographHeader_Elt.insertAdjacentHTML("beforeend", picture);
 
     // Footer
-    const likeNPrice_elt = document.querySelector('.photograph-footer');
     const photographerLikes = document.createElement('p');
     photographerLikes.innerHTML = `<span class="photographerLikes">${like}</span> <img src="assets/icons/heart-solid.svg" alt="Likes" aria-label="Likes">`;
     const photographerPrice = document.createElement('p');
