@@ -5,6 +5,7 @@ const leftLightBox_elt = document.querySelector('.left-LightBox');
 const rightLightBox_elt = document.querySelector('.right-LightBox');
 const header_elt = document.querySelector('header');
 const main_elt = document.querySelector('main');
+const body_elt = document.querySelector('body');
 
 // Open/Close Lightbox
 function displayLightbox(e) {
@@ -12,6 +13,7 @@ function displayLightbox(e) {
     lightBoxModal_elt.setAttribute("aria-hidden", "false");
     header_elt.setAttribute("aria-hidden", "true");
     main_elt.setAttribute("aria-hidden", "true");
+    body_elt.classList.add('noScroll');
     e.children[0].focus();
     document.addEventListener('keydown', e =>{
         if(e.key === 'Escape' && lightBoxModal_elt.style.display === "flex"){
@@ -25,6 +27,7 @@ function closeLightbox() {
     lightBoxModal_elt.setAttribute("aria-hidden", "true");
     header_elt.setAttribute("aria-hidden", "false");
     main_elt.setAttribute("aria-hidden", "false");
+    body_elt.classList.remove('noScroll');
     const selected_elt_id = document.querySelector(".media-selected").id;
     document.getElementById(`mediaArt-${selected_elt_id}`).focus();
 }
@@ -95,6 +98,13 @@ export function initLightBox() {
         const selected_elt = document.querySelector('.media-selected');
         backLightBox(mediaLightBox_elts, selected_elt);
     });
+    leftLightBox_elt.addEventListener("keydown", (e)=>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
+        if(e.key === 'Enter' && lightBoxModal_elt.style.display === "flex"){
+            backLightBox(mediaLightBox_elts, selected_elt);
+        }
+    })
     document.addEventListener('keydown', e =>{
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
         const selected_elt = document.querySelector('.media-selected');
@@ -107,6 +117,13 @@ export function initLightBox() {
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
         const selected_elt = document.querySelector('.media-selected');
         nextLightBox(mediaLightBox_elts, selected_elt)});
+    rightLightBox_elt.addEventListener("keydown", (e)=>{
+        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+        const selected_elt = document.querySelector('.media-selected');
+        if(e.key === 'Enter' && lightBoxModal_elt.style.display === "flex"){
+            nextLightBox(mediaLightBox_elts, selected_elt);
+        }
+    });
     document.addEventListener('keydown', e =>{
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
         const selected_elt = document.querySelector('.media-selected');

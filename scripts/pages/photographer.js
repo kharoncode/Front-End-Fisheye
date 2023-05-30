@@ -30,6 +30,7 @@ function initSelectFilterChanged(photographerMedias,totalLikes){
         document.querySelector('.lightBox_modal-media').innerHTML="";
         photographerMediaCard(photographerMedias);
         initIncreaseLikes(totalLikes);
+        initLightBox();
     });
 
 }

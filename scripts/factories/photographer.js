@@ -82,8 +82,8 @@ export function photographerMediaCard(data){
         mediaCard.className = `photograph-main--media-Card`;
         mediaCard.id = `section-${id}`;
 
-        let html_img_small = `<img id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/mini/${image}" alt="${title}" aria-label="${title}, closeup view" tabindex="0">`;
-        let html_video_small = `<video id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/${video}" role="img" aria-label="${title}, closeup view" tabindex="0">
+        let html_img_small = `<img id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/mini/${image}" alt="${title}" aria-label="${title}, vue rapprochée" tabindex="0">`;
+        let html_video_small = `<video id="mediaArt-${id}" class="openLightBox" src="assets/media/${photographerId}/${video}" role="img" aria-label="${title}, vue rapprochée" tabindex="0">
                                 <p>Video de ${title}</p></video>`;
         if(video === undefined){   
             mediaCard.insertAdjacentHTML("beforeend", html_img_small);
@@ -106,12 +106,12 @@ export function photographerMediaCard(data){
         mediaSection_elt.appendChild(mediaCard);
 
         // LightBox
-        let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected" aria-label="image closeup view">
-                                <img  class="picture-large" src="assets/media/${photographerId}/large/${image}" alt="${title}">
+        let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+                                <img  class="picture-large" src="assets/media/${photographerId}/large/${image}" alt="${title}" tabindex="0">
                                 <p>${title}</p>
                               </section>`;
-        let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected" aria-label="image closeup view">
-                                    <video " src="assets/media/${photographerId}/${video}" controls>
+        let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
+                                    <video " src="assets/media/${photographerId}/${video}" controls aria-label="${title}">
                                         <p>Video de ${title}</p>
                                     </video>
                                     <p>${title}</p>

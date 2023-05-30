@@ -1,3 +1,7 @@
+.noScroll{
+    overflow: hidden;
+}
+
 body{
     margin: auto;
     width: 100%;
@@ -90,12 +94,12 @@ main{
     color: #901C1C;
 }
 
-
 .photograph-main--media-Card img, .photograph-main--media-Card video{
     border-radius: 5px;
     width: 100%;
     height: 300px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .photograph-main--media-Card_info{
@@ -199,12 +203,14 @@ main{
     right: 80px;
     width: 3em;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
+    cursor: pointer;
 }
 
 .left-LightBox, .right-LightBox{
     position: absolute;
     width: 2.5em;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
+    cursor: pointer;
 }
 
 .left-LightBox{
