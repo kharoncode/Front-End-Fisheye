@@ -75,11 +75,7 @@ function addMediaSelected (id){
             displayLightbox(mediaLightBoxSelected_elt);
 }
 
-// Remove/Add class "media-selected" on selected media
-export function initLightBox() {
-    // Close
-    closeLightBox_elt.addEventListener('click', closeLightbox);
-    // Open (Remove/Add class "media-selected" on selected media)
+export function initDisplayLightBox(){
     const openLightBox_elts = document.querySelectorAll('.openLightBox');
         for(let i =0; i<openLightBox_elts.length; i++){
             let eltID = openLightBox_elts[i].id.match(/\d+/);
@@ -92,6 +88,14 @@ export function initLightBox() {
                 }
             });  
         }
+}
+
+// Remove/Add class "media-selected" on selected media
+export function initLightBox() {
+    // Close
+    closeLightBox_elt.addEventListener('click', closeLightbox);
+    // Open (Remove/Add class "media-selected" on selected media)
+    initDisplayLightBox();
     // Back
     leftLightBox_elt.addEventListener("click", ()=>{
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
