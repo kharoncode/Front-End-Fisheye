@@ -10,6 +10,7 @@ const submit_elt = document.querySelector('.submitButton');
 const header_elt = document.querySelector('header');
 const main_elt = document.querySelector('main');
 const body_elt = document.querySelector('body');
+const modal = document.getElementById("contact_modal");
 
 // Display/Disable Error 
 function displayError(input, name){
@@ -32,19 +33,12 @@ function disableError(input, name){
 
 // Open/Close Modal
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
 	modal.style.display = "flex";
     modal.setAttribute("aria-hidden", "false");
     header_elt.setAttribute("aria-hidden", "true");
     main_elt.setAttribute("aria-hidden", "true");
     body_elt.classList.add('noScroll');
     firstName_elt.focus();
-    document.addEventListener('keydown', e =>{
-        if(e.key === 'Escape' && modal.style.display === "flex"){
-            closeModal();
-        }
-    });
-    
 }
 function closeModal() {
     const modal = document.getElementById("contact_modal");
@@ -56,14 +50,7 @@ function closeModal() {
     openModal_elt.focus();
 }
 
-// Modal
-// open/close
-openModal_elt.addEventListener("click", displayModal);
-closeModal_elt.addEventListener("click", closeModal);
-modalBackground_elt.addEventListener('click', closeModal);
-
-// submit
-submit_elt.addEventListener('click', (event)=>{
+function onSubmit(event){
     event.preventDefault();
     let errorForm = false;
 
@@ -116,5 +103,21 @@ submit_elt.addEventListener('click', (event)=>{
     console.log(submitValue);
     return submitValue;
     }
-})
+}
 
+function initContactForm() {
+    // open/close
+    openModal_elt.addEventListener("click", displayModal);
+    closeModal_elt.addEventListener("click", closeModal);
+    modalBackground_elt.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e =>{
+        if(e.key === 'Escape' && modal.style.display === "flex"){
+            closeModal();
+        }
+    });
+
+    // submit
+    submit_elt.addEventListener('click', onSubmit);
+}
+
+initContactForm();
