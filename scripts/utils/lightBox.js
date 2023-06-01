@@ -8,6 +8,19 @@ const main_elt = document.querySelector('main');
 const body_elt = document.querySelector('body');
 
 // Open/Close Lightbox
+function lightboxKeyDown(e){
+    const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
+    const selected_elt = document.querySelector('.media-selected');
+    if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
+        nextLightBox(mediaLightBox_elts, selected_elt);
+    }
+    if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
+        backLightBox(mediaLightBox_elts, selected_elt);
+    }
+    if(e.key === 'Escape' && lightBoxModal_elt.style.display === "flex"){
+        closeLightbox();
+    }
+}
 function displayLightbox(e) {
 	lightBoxModal_elt.style.display = "flex";
     lightBoxModal_elt.setAttribute("aria-hidden", "false");
@@ -15,14 +28,10 @@ function displayLightbox(e) {
     main_elt.setAttribute("aria-hidden", "true");
     body_elt.classList.add('noScroll');
     e.children[0].focus();
-    document.addEventListener('keydown', e =>{
-        if(e.key === 'Escape' && lightBoxModal_elt.style.display === "flex"){
-            closeLightbox();
-        }
-    });
-    
+    document.addEventListener('keydown', lightboxKeyDown);
 }
 function closeLightbox() {
+    document.removeEventListener('keydown', lightboxKeyDown);
     lightBoxModal_elt.style.display = "none";
     lightBoxModal_elt.setAttribute("aria-hidden", "true");
     header_elt.setAttribute("aria-hidden", "false");
@@ -47,7 +56,6 @@ function backLightBox(data, selected) {
         }
     }
 }
-
 function nextLightBox(data, selected) {
     for(let i = 0; i<data.length; i++){
         if(data[i].id === selected.id){
@@ -74,7 +82,6 @@ function addMediaSelected (id){
             mediaLightBoxSelected_elt.classList.add("media-selected");
             displayLightbox(mediaLightBoxSelected_elt);
 }
-
 export function initDisplayLightBox(){
     const openLightBox_elts = document.querySelectorAll('.openLightBox');
         for(let i =0; i<openLightBox_elts.length; i++){
@@ -90,11 +97,11 @@ export function initDisplayLightBox(){
         }
 }
 
-// Remove/Add class "media-selected" on selected media
+// Init LightBox
 export function initLightBox() {
     // Close
     closeLightBox_elt.addEventListener('click', closeLightbox);
-    // Open (Remove/Add class "media-selected" on selected media)
+    // Open
     initDisplayLightBox();
     // Back
     leftLightBox_elt.addEventListener("click", ()=>{
@@ -109,13 +116,6 @@ export function initLightBox() {
             backLightBox(mediaLightBox_elts, selected_elt);
         }
     })
-    document.addEventListener('keydown', e =>{
-        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-        const selected_elt = document.querySelector('.media-selected');
-        if(e.key === 'ArrowLeft' && lightBoxModal_elt.style.display === "flex"){
-            backLightBox(mediaLightBox_elts, selected_elt);
-        }
-    });
     // Next
     rightLightBox_elt.addEventListener("click", ()=>{
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
@@ -125,13 +125,6 @@ export function initLightBox() {
         const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
         const selected_elt = document.querySelector('.media-selected');
         if(e.key === 'Enter' && lightBoxModal_elt.style.display === "flex"){
-            nextLightBox(mediaLightBox_elts, selected_elt);
-        }
-    });
-    document.addEventListener('keydown', e =>{
-        const mediaLightBox_elts = document.querySelectorAll(".media-lightbox");
-        const selected_elt = document.querySelector('.media-selected');
-        if(e.key === 'ArrowRight' && lightBoxModal_elt.style.display === "flex"){
             nextLightBox(mediaLightBox_elts, selected_elt);
         }
     });

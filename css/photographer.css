@@ -90,7 +90,6 @@ main{
 }
 
 .photograph-main--media-Card p{
-    font-size: 1.2em;
     color: #901C1C;
 }
 
@@ -106,6 +105,11 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.photograph-main--media-Card_info h3{
+    font-size: 1.1em;
+    color: #901C1C
 }
 
 .photograph-main--media-Card_info input{
@@ -189,7 +193,7 @@ main{
     align-items: center;
 }
 
-#lightBox_modal article {
+.lightBox_modal-media {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,6 +206,7 @@ main{
     width: 3em;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
     cursor: pointer;
+    z-index: 10;
 }
 
 .left-LightBox, .right-LightBox{
@@ -209,6 +214,7 @@ main{
     width: 2.5em;
     filter: invert(18%) sepia(46%) saturate(3524%) hue-rotate(348deg) brightness(90%) contrast(90%);
     cursor: pointer;
+    height: 100%;
 }
 
 .left-LightBox{
@@ -237,7 +243,7 @@ main{
     max-height: 90vh;
 }
 
-#lightBox_modal section>p{
+#lightBox_modal section>h3{
     width: 100%;
     color:#901C1C;
     font-size: 1.5em;

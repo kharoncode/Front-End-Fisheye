@@ -94,7 +94,7 @@ export function photographerMediaCard(data){
         const mediaInfo = document.createElement('div');
         mediaInfo.className = 'photograph-main--media-Card_info'
     
-        const mediaTitle = document.createElement('p');
+        const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = title;
         const mediaLikes = document.createElement('p');
         mediaLikes.innerHTML = `<span class="media-likes media-likes-${mediaIndex}">${likes}</span> 
@@ -108,13 +108,13 @@ export function photographerMediaCard(data){
         // LightBox
         let html_img_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
                                 <img  class="picture-large" src="assets/media/${photographerId}/large/${image}" alt="${title}" tabindex="0">
-                                <p>${title}</p>
+                                <h3>${title}</h3>
                               </section>`;
         let html_video_large = `<section id="${id}" class="media-lightbox media-lightbox-${id} media-selected">
                                     <video " src="assets/media/${photographerId}/${video}" controls aria-label="${title}">
                                         <p>Video de ${title}</p>
                                     </video>
-                                    <p>${title}</p>
+                                    <h3>${title}</h3>
                                 </section>`;
         if(video === undefined){   
             lightBoxModalCard_elt.insertAdjacentHTML("beforeend", html_img_large);

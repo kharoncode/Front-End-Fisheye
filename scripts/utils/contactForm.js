@@ -32,7 +32,13 @@ function disableError(input, name){
 }
 
 // Open/Close Modal
+function closeModalKeyDown(e){
+    if(e.key === 'Escape' && modal.style.display === "flex"){
+        closeModal();
+    }
+}
 function displayModal() {
+    document.addEventListener('keydown', closeModalKeyDown);
 	modal.style.display = "flex";
     modal.setAttribute("aria-hidden", "false");
     header_elt.setAttribute("aria-hidden", "true");
@@ -41,6 +47,7 @@ function displayModal() {
     firstName_elt.focus();
 }
 function closeModal() {
+    document.removeEventListener('keydown', closeModalKeyDown);
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
@@ -110,12 +117,6 @@ function initContactForm() {
     openModal_elt.addEventListener("click", displayModal);
     closeModal_elt.addEventListener("click", closeModal);
     modalBackground_elt.addEventListener('click', closeModal);
-    document.addEventListener('keydown', e =>{
-        if(e.key === 'Escape' && modal.style.display === "flex"){
-            closeModal();
-        }
-    });
-
     // submit
     submit_elt.addEventListener('click', onSubmit);
 }
