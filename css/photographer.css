@@ -375,6 +375,7 @@ form textarea{
     height: 130px;
     width: 100%;
     max-width: 101%;
-    font-size: 1.5em;
+    border-radius: 5px;
+    font-size: 1.3em;
     padding: 5px 10px 5px 10px;
 }
